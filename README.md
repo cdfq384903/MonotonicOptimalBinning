@@ -39,5 +39,5 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 4.SAS OnDemand for Academics. (2022). Retrieved 9 June 2022, from https://www.sas.com/zh_tw/software/on-demand-for-academics.html <br>
 
 # Author
-1.Yu Cheng Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
+1.Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
 2. <br>
