@@ -1,11 +1,12 @@
 
+/*
 輸出資料集
 	dataframestring 輸出資料集的資料來源
 	outfilePathstring 輸出資料集的路徑
     dbmsOptionstring 輸出引擎,例如csv LABEL REPLACE
 	otherOptionstring 其他額外參數,例如PUTNAMES=YES;
 	return void
-
+*/
 %MACRO exportFile(dataframe, outfilePath, dbmsOption, otherOption);
 	PROC EXPORT;
 	DATA = &dataframe.;
@@ -15,13 +16,13 @@
 	RUN;
 %MEND;
 
-
+/*
 讀取CSV資料集
 	inputFileAbsPathstring 輸入資料集的路徑
 	encodingstring 文件編碼,例如utf-8
 	outputFileAbsPathstring 輸出資料集的路徑
 	return void
-
+*/
 %MACRO readCsvFile(inputFileAbsPath, encoding, outputFileAbsPath);
 	FILENAME temp &inputFileAbsPath. ENCODING = &encoding.;
 	PROC IMPORT DATAFILE = temp
@@ -33,7 +34,7 @@
 	RUN;
 %MEND;
 
-
+/*
 取得特定欄位數值
 	attributestring 欄位名稱
 	sepstring 區隔字串
@@ -41,7 +42,7 @@
 	whereCondstring where條件
 	outVarstring 輸出數值
 	return void
-
+*/
 %MACRO selectAttribute(attribute, sep, orgTable, whereCond, outVar);
 	SELECT &attribute. INTO &outVar. separated by &sep.
 	   FROM &orgTable.
@@ -49,11 +50,11 @@
 	%put outVar;
 %MEND;
 
-
+/*
 刪除檔案
 	filestring 刪除檔案的名稱
 	return void
-
+*/
 %MACRO deletefile(file);
   data _null_;
     rc = fdelete(&file.);
@@ -65,11 +66,11 @@
   run;
 %MEND ;
 
-
+/*
 刪除執行MOB演算法下的三大資料集，例如bins_summarybins_summary_pvalueexclude
 	bins_libstring 存放執行mob演算法下產生bins_summarybins_summary_pvalueexclude三大檔案的lib位置
 	return void
-
+*/
 %MACRO cleanBinsDetail(bins_lib);
 	PROC CONTENTS DATA = &bins_lib.._ALL_ OUT = bins_detail(WHERE = (MEMTYPE = DATA)) NOPRINT NODETAILS;
 	RUN;
