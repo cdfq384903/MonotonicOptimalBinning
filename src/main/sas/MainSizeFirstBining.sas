@@ -2,7 +2,7 @@ options mprint;
 %INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\MonotonicOptimalBining.sas" ;
 LIBNAME TMPWOE "E:\UPL_MODEL\PwC_DNTI\data\tmp\woe";
 
-/*-----------------------------以下為使用測試資料進行MOB演算法測試-----------------------------*/
+/*-----------------------------for testing case-----------------------------*/
 %readCsvFile(inputFileAbsPath = "E:\UPL_MODEL\PwC_DNTI\data\tmp\Training50_example.csv", 
              encoding = "ascii", outputFileAbsPath = work.Training50);
 
