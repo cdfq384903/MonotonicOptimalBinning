@@ -12,7 +12,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 ### Step 1. Download this repository
   ```git clone https://github.com/cdfq384903/MonotonicOptimalBinning.git```
 
-### Step 2. Upload source code and test data
+### Step 2. Upload source code and testing data
 (1) Upload source code as show below.<br>
 <p align="left">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="folder structure 2"/>
