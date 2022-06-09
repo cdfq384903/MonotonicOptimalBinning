@@ -5,7 +5,9 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 ### Step 0. Set up develop environment
 (1) Make sure you have already sign up sas member. If not please sign up as following https://www.sas.com/profile/ui/#/create<br>
 (2) Create folder structure as following <br>
-  >> data 
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/chart/flow/mob%20algorithm%20flow%20chart%20for%20numerical%20version.jpg" alt="The Algorithm flow chart for numerical MOB"/>
+</p>
 
 ### Step 1. Download this repository
   >> git clone https://github.com/cdfq384903/MonotonicOptimalBinning.git
