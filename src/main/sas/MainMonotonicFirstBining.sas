@@ -1,4 +1,6 @@
-options mprint;
+options nonotes;
+* options mprint; /*open it if you want to debug code*/
+
 %INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\MonotonicOptimalBining.sas" ;
 LIBNAME TMPWOE "E:\UPL_MODEL\PwC_DNTI\data\tmp\woe";
 
