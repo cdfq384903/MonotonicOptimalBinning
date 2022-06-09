@@ -72,11 +72,37 @@ The code below shows the execution of the MOB macro with recommended parameters.
 3. <br>
 
 #### Arguments
+#### Output
 
 ### Print WoE result
+The code below shows the execution of the MOB macro with recommended parameters.
+1. <br>
+2. <br>
+3. <br>
+
+#### Arguments
+#### Output
+
 ### Generate the IV summary table
+The code below shows the execution of the getIvPerVar macro with recommended parameters.
+1. <br>
+
+#### Arguments
+#### Output
+
 ### Generate split rule
+The code below shows the execution of the exportSplitRule macro with recommended parameters.
+1. <br>
+
+#### Arguments
+#### Output
+
 ### Clear useless data table
+The code below shows the execution of the cleanBinsDetail macro with recommended parameters.
+1. <br>
+
+#### Arguments
+#### Output
 
 ## Monotonic Optimal Bining algorithm flow chart
 
