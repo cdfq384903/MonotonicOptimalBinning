@@ -6,7 +6,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 (1) Make sure you have already sign up sas member. If not please sign up as following https://www.sas.com/profile/ui/#/create<br>
 (2) Create folder structure as following <br>
 <p align="left">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure1.png" alt="The Algorithm flow chart for numerical MOB"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure1.png" alt="folder structure 1"/>
 </p>
 
 ### Step 1. Download this repository
@@ -15,8 +15,19 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 ### Step 2. Upload source code and test data
 (1) Upload source code as show below.<br>
 <p align="left">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="The Algorithm flow chart for numerical MOB"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="folder structure 2"/>
 </p>
+Note: we revise test data (german_data_credit_cat.csv) and detail as show below <br>
+a.revise all column names <br>
+b.revise the value of CostMatrixRisk <br>
+
+* original value
+** 1 = Good Risk
+** 2 = Bad Risk
+
+* revise value
+**  0 = Good Risk
+**1 = Bad Risk
 
 ### Step 3. Demo
 
