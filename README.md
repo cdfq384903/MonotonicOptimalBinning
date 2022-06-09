@@ -37,7 +37,7 @@ b.revise the value of CostMatrixRisk <br>
 ##### Size First Bining(SFB)
 Note: <br>
 <p align="center">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="folder structure 2"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v2.png" alt="folder structure 2"/>
 </p>
 
 Note: <br>
