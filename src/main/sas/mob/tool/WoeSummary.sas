@@ -1,5 +1,5 @@
 /*load libs*/
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\handler\FileHandler.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/handler/FileHandler.sas" ;
 
 /*
 根據optimal出來的結果計算woe/iv

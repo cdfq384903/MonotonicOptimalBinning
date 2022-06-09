@@ -1,18 +1,18 @@
 options nonotes;
 * options mprint; /*open it if you want to debug code*/
 
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\MonotonicOptimalBining.sas" ;
-LIBNAME TMPWOE "E:\UPL_MODEL\PwC_DNTI\data\tmp\woe";
+%INCLUDE "/home/u60021675/src/main/sas/handler/FileHandler.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/mob/MonotonicOptimalBining.sas" ;
+LIBNAME TMPWOE "/home/u60021675/output";
 
 /*-----------------------------for testing case-----------------------------*/
-%readCsvFile(inputFileAbsPath = "E:\UPL_MODEL\PwC_DNTI\data\tmp\Training50_example.csv", 
-             encoding = "ascii", outputFileAbsPath = work.Training50);
+%readCsvFile(inputFileAbsPath = "/home/u60021675/data/german_data_credit_cat.csv", 
+             encoding = "ascii", outputFileAbsPath = work.german_credit_card);
 
 /*for init parameter*/
-%let data_table = Training50;
+%let data_table = german_credit_card;
 %let y = Creditability;
 %let x = AgeYears CreditAmount DurationOfCreditMonth ForeignWorker;
-/*%let x = AgeYears;*/
 %let exclude_condi = < -99999999;
 %let min_samples = %sysevalf(500 * 0.05);
 %let min_bads = 10;

@@ -1,11 +1,11 @@
 /*load libs*/
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\num\BinsMerge.sas" ;
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\cat\ChiMerge.sas" ;
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\num\BinsSummary.sas" ;
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\tool\WoeSummary.sas" ;
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\tool\WoeHandler.sas" ;
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\woe\mob\tool\IvSummary.sas" ;
-%INCLUDE "E:\UPL_MODEL\PwC_DNTI\src\handler\FileHandler.sas";
+%INCLUDE "/home/u60021675/src/main/sas/mob/num/BinsMerge.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/mob/cat/ChiMerge.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/mob/num/BinsSummary.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/mob/tool/WoeSummary.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/mob/tool/WoeHandler.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/mob/tool/IvSummary.sas" ;
+%INCLUDE "/home/u60021675/src/main/sas/handler/FileHandler.sas";
 
 /*define global data members*/
 %global g_data_table g_y g_x g_exclude_condi g_lib_name g_min_bins g_min_samples 
