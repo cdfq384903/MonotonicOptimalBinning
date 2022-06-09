@@ -59,14 +59,21 @@ Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth v
 #### Categorical variable
 
 ## Conclusion
+XXXXXXXXXXXXXXXXXXXX
 
 # Appendix
 
 ## The MonotonicOptimalBining core class
-### The init macro
-### The initSizeFirstBining macro
-### The initMonotonicFirstBining macro
-### The runMob macro
+### Running the MOB algorithm macro
+The code below shows the execution of the MOB macro with recommended parameters.
+1. <br>
+2. <br>
+3. <br>
+
+#### The init macro
+#### The initSizeFirstBining macro
+#### The initMonotonicFirstBining macro
+#### The runMob macro
 
 ## Monotonic Optimal Bining algorithm flow chart
 
