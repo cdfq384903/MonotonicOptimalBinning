@@ -1,10 +1,10 @@
 
 /*
 輸出資料集
-	dataframestring 輸出資料集的資料來源
-	outfilePathstring 輸出資料集的路徑
-    dbmsOptionstring 輸出引擎,例如csv LABEL REPLACE
-	otherOptionstring 其他額外參數,例如PUTNAMES=YES;
+	dataframe:<string> 輸出資料集的資料來源
+	outfilePath:<string> 輸出資料集的路徑
+    dbmsOption:<string> 輸出引擎,例如csv LABEL REPLACE
+	otherOption:<string> 其他額外參數,例如PUTNAMES=YES;
 	return void
 */
 %MACRO exportFile(dataframe, outfilePath, dbmsOption, otherOption);
@@ -18,9 +18,9 @@
 
 /*
 讀取CSV資料集
-	inputFileAbsPathstring 輸入資料集的路徑
-	encodingstring 文件編碼,例如utf-8
-	outputFileAbsPathstring 輸出資料集的路徑
+	inputFileAbsPath:<string> 輸入資料集的路徑
+	encoding:<string> 文件編碼,例如utf-8
+	outputFileAbsPath:<string> 輸出資料集的路徑
 	return void
 */
 %MACRO readCsvFile(inputFileAbsPath, encoding, outputFileAbsPath);
@@ -36,15 +36,15 @@
 
 /*
 取得特定欄位數值
-	attributestring 欄位名稱
-	sepstring 區隔字串
-	orgTablestring 原始資料表格
-	whereCondstring where條件
-	outVarstring 輸出數值
+	attribute:<string> 欄位名稱
+	sep:<string> 區隔字串
+	orgTable:<string> 原始資料表格
+	whereCond:<string> where條件
+	outVar:<string> 輸出數值
 	return void
 */
 %MACRO selectAttribute(attribute, sep, orgTable, whereCond, outVar);
-	SELECT &attribute. INTO &outVar. separated by &sep.
+	SELECT &attribute. INTO :&outVar. separated by &sep.
 	   FROM &orgTable.
 	WHERE &whereCond.;
 	%put outVar;
@@ -52,7 +52,7 @@
 
 /*
 刪除檔案
-	filestring 刪除檔案的名稱
+	file:<string> 刪除檔案的名稱
 	return void
 */
 %MACRO deletefile(file);
@@ -68,23 +68,23 @@
 
 /*
 刪除執行MOB演算法下的三大資料集，例如bins_summarybins_summary_pvalueexclude
-	bins_libstring 存放執行mob演算法下產生bins_summarybins_summary_pvalueexclude三大檔案的lib位置
+	bins_lib:<string> 存放執行mob演算法下產生bins_summarybins_summary_pvalueexclude三大檔案的lib位置
 	return void
 */
 %MACRO cleanBinsDetail(bins_lib);
-	PROC CONTENTS DATA = &bins_lib.._ALL_ OUT = bins_detail(WHERE = (MEMTYPE = DATA)) NOPRINT NODETAILS;
+	PROC CONTENTS DATA = &bins_lib.._ALL_ OUT = bins_detail(WHERE = (MEMTYPE = "DATA")) NOPRINT NODETAILS;
 	RUN;
 	
 	%let clean_list = '';
 	PROC SQL noprint ;
-		SELECT distinct MEMNAME INTO clean_list separated by  
+		SELECT distinct MEMNAME INTO :clean_list separated by  " "
 		  FROM bins_detail 
-		 WHERE MEMNAME LIKE BINS_% OR MEMNAME LIKE EXCLUDE_%;
+		 WHERE MEMNAME LIKE "BINS_%" OR MEMNAME LIKE "EXCLUDE_%";
 
-		SELECT COUNT() INTO n_clean_list
-          FROM (SELECT distinct MEMNAME INTO clean_list separated by  
+		SELECT COUNT(*) INTO :n_clean_list
+          FROM (SELECT distinct MEMNAME INTO :clean_list separated by  " "
 		          FROM bins_detail 
-		         WHERE MEMNAME LIKE BINS_% OR MEMNAME LIKE EXCLUDE_%);
+		         WHERE MEMNAME LIKE "BINS_%" OR MEMNAME LIKE "EXCLUDE_%");
 	QUIT ;
 	%if &n_clean_list. = 0 %then
 		%do;

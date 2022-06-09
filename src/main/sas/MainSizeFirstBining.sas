@@ -15,7 +15,7 @@ LIBNAME TMPWOE "/home/u60021675/output";
 %let x = AgeInYears CreditAmount DurationInMonth;
 %let exclude_condi = < -99999999;
 %let min_samples = %sysevalf(1000 * 0.05);
-%let min_bads = 1;
+%let min_bads = 10;
 %let min_pvalue = 0.35;
 %let show_woe_plot = 1;
 %let lib_name = TMPWOE;
@@ -23,12 +23,12 @@ LIBNAME TMPWOE "/home/u60021675/output";
 
 /*for SFB*/
 %let min_bins = 3;
-%let max_samples = %sysevalf(500 * 0.4);
+%let max_samples = %sysevalf(1000 * 0.4);
 
 %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
       show_woe_plot = &show_woe_plot.,
-      is_using_encoding_var = &is_using_encoding_var., lib_name = TMPWOE);
+      is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
 %initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7);
 %runMob();
 
@@ -41,10 +41,10 @@ LIBNAME TMPWOE "/home/u60021675/output";
              min_bad_count = 1);
 
 /*print woe plot for iv constrain*/
-%printWoeBarLineChart(lib_name = &lib_name., min_iv = 0.04);
+%printWoeBarLineChart(lib_name = &lib_name., min_iv = 0.001);
 
 /*generate split rule*/
-%exportSplitRule(lib_name = &lib_name., output_file = E:\UPL_MODEL\PwC_DNTI\data\tmp\woe);
+%exportSplitRule(lib_name = &lib_name., output_file = /home/u60021675/output/);
 
 /*clean data table ex:bins_summary/bins_summary_pvalue/exclude/...etc.*/
 %cleanBinsDetail(bins_lib = &lib_name.);
