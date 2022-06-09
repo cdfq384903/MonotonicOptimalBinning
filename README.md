@@ -60,6 +60,12 @@ Note: <br>
 
 # Appendix
 
+## The MonotonicOptimalBining core class
+### The init macro
+### The initSizeFirstBining macro
+### The initMonotonicFirstBining macro
+### The runMob macro
+
 ## Monotonic Optimal Bining algorithm flow chart
 
 ### Numerical variable
