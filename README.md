@@ -75,16 +75,21 @@ The code below shows the execution of the MOB macro with recommended parameters.
 #### Output
 
 ### Print WoE result
-The code below shows the execution of the MOB macro with recommended parameters.
+The code below shows the execution of the printWithoutCname macro with recommended parameters.
 1. <br>
-2. <br>
-3. <br>
 
 #### Arguments
 #### Output
 
 ### Generate the IV summary table
 The code below shows the execution of the getIvPerVar macro with recommended parameters.
+1. <br>
+
+#### Arguments
+#### Output
+
+### Print WoE bar chart via IV summary filter
+The code below shows the execution of the printWoeBarLineChart macro with recommended parameters.
 1. <br>
 
 #### Arguments
