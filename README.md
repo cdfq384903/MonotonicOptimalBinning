@@ -64,16 +64,19 @@ XXXXXXXXXXXXXXXXXXXX
 # Appendix
 
 ## The MonotonicOptimalBining core class
+
 ### Running the MOB algorithm macro
 The code below shows the execution of the MOB macro with recommended parameters.
 1. <br>
 2. <br>
 3. <br>
 
-#### The init macro
-#### The initSizeFirstBining macro
-#### The initMonotonicFirstBining macro
-#### The runMob macro
+#### Arguments
+
+### Print WoE result
+### Generate the IV summary table
+### Generate split rule
+### Clear useless data table
 
 ## Monotonic Optimal Bining algorithm flow chart
 
