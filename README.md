@@ -12,7 +12,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 
 ### Step 2. Upload source code and test data
 
-### Demo
+### Step 3. Demo
 
 #### Numerical variable
 
