@@ -1,2 +1,2 @@
 # MonotonicOptimalBinning
-This project mainly implements the mob algorithm. We extend the application of the algorithm. The mob algorithm we constructed can be applied to numerical and categorical data, and also optimize the p-value. Avoid the problem of too many bins and provide bins size priority binning and monotonicity priority binning methods to provide users with more convenient data discretization operations
+This project mainly implements the Monotonic Optimal Bining algorithm. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of too many bins, we optimize the p-value and provide bins size first binning and monotonicity first binning methods for users discretize data conveniently.
