@@ -35,7 +35,7 @@ b.revise the value of CostMatrixRisk <br>
 #### Numerical variable
 
 ##### Size First Bining(SFB)
-Run MainSizeFirstBining script <br>
+Run MainSizeFirstBining.sas script <br>
 Note: Undering SFB algorithm. The WoE transformation result of DurationInMonth variable. It presents the monotonicity of WoE. <br>
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
@@ -47,7 +47,7 @@ Note: Undering SFB algorithm. The WoE transformation result of CreditAmount vari
 </p>
 
 ##### Monotonic First Bining(MFB)
-Run MainMonotonicFirstBining script <br>
+Run MainMonotonicFirstBining.sas script <br>
 Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth variable. It presents the monotonicity of WoE. <br>
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/MFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
