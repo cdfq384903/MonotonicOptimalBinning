@@ -25,6 +25,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 # Appendix
 
 ## Monotonic Optimal Bining 
+![image]()<br>
 
 # Reference
 1.German Credit Risk Analysis : Beginner's Guide . (2022). Retrieved 9 June 2022, from https://www.kaggle.com/code/pahulpreet/german-credit-risk-analysis-beginner-s-guide/notebook <br>
