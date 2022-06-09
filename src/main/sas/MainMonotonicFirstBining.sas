@@ -11,11 +11,11 @@ LIBNAME TMPWOE "/home/u60021675/output";
 
 /*for init parameter*/
 %let data_table = german_credit_card;
-%let y = Creditability;
-%let x = AgeYears CreditAmount DurationOfCreditMonth ForeignWorker;
+%let y = CostMatrixRisk;
+%let x = AgeInYears CreditAmount DurationInMonth;
 %let exclude_condi = < -99999999;
-%let min_samples = %sysevalf(500 * 0.05);
-%let min_bads = 10;
+%let min_samples = %sysevalf(1000 * 0.05);
+%let min_bads = 1;
 %let min_pvalue = 0.35;
 %let show_woe_plot = 1;
 %let lib_name = TMPWOE;
