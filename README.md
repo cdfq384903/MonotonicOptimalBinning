@@ -22,6 +22,10 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 
 #### Categorical variable
 
+# Appendix
+
+## Monotonic Optimal Bining 
+
 # Reference
 1.German Credit Risk Analysis : Beginner's Guide . (2022). Retrieved 9 June 2022, from https://www.kaggle.com/code/pahulpreet/german-credit-risk-analysis-beginner-s-guide/notebook <br>
 2.H. Liu, F. Hussain, C.L. Tan, and M. Dash. Discretization: An enabling technique. Data Mining and Knowledge Discovery, 6(4):393–423, 2002. <br>
