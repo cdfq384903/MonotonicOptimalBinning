@@ -18,6 +18,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="folder structure 2"/>
 </p>
 Note: we made some modifications to this file(german_data_credit_cat.csv) and detail as show below <br>
+
 a.revise all column names <br>
 b.revise the value of CostMatrixRisk <br>
 
