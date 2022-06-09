@@ -28,7 +28,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 
 ### Numerical part
 <p align="center">
-  <img src="[http://www.fillmurray.com/460/300](https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/mob%20algorithm%20flow%20chart%20for%20numerical%20version.jpg)">
+  <img src="[https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/mob%20algorithm%20flow%20chart%20for%20numerical%20version.jpg]">
 </p>
 
 ### Categorical part
