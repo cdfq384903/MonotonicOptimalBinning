@@ -15,7 +15,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 ### Step 2. Upload source code and test data
 (1) Upload source code as show below.<br>
 <p align="left">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure.png" alt="The Algorithm flow chart for numerical MOB"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="The Algorithm flow chart for numerical MOB"/>
 </p>
 
 ### Step 3. Demo
