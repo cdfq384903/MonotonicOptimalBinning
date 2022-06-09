@@ -24,7 +24,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 
 # Appendix
 
-## Monotonic Optimal Bining 
+## Monotonic Optimal Bining algorithm flow chart
 ![image](https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/mob%20algorithm%20flow%20chart.png)<br>
 
 # Reference
