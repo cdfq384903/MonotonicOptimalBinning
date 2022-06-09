@@ -17,14 +17,12 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 <p align="left">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="folder structure 2"/>
 </p>
-Note: we revise test data (german_data_credit_cat.csv) and detail as show below <br>
+Note: we made some modifications to this file(german_data_credit_cat.csv) and detail as show below <br>
 a.revise all column names <br>
 b.revise the value of CostMatrixRisk <br>
-
 * original value <br>
   * 1 = Good Risk <br>
   * 2 = Bad Risk <br>
-
 * revise value <br>
   * 0 = Good Risk <br>
   * 1 = Bad Risk <br>
