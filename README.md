@@ -22,12 +22,12 @@ a.revise all column names <br>
 b.revise the value of CostMatrixRisk <br>
 
 * original value <br>
-* 1 = Good Risk <br>
-* 2 = Bad Risk <br>
+  * 1 = Good Risk <br>
+  * 2 = Bad Risk <br>
 
 * revise value <br>
-* 0 = Good Risk <br>
-* 1 = Bad Risk <br>
+  * 0 = Good Risk <br>
+  * 1 = Bad Risk <br>
 
 ### Step 3. Demo
 
