@@ -11,3 +11,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 2.H. Liu, F. Hussain, C.L. Tan, and M. Dash. Discretization: An enabling technique. Data Mining and Knowledge Discovery, 6(4):393–423, 2002. <br>
 3.Mironchyk, Pavel, and Viktor Tchistiakov. 2017. Monotone Optimal Binning Algorithm for Credit Risk Modeling. <br>
 4.SAS OnDemand for Academics. (2022). Retrieved 9 June 2022, from https://www.sas.com/zh_tw/software/on-demand-for-academics.html <br>
+
+# Author
+## Yu Cheng Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/)
+##
