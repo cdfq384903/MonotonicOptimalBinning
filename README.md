@@ -26,13 +26,12 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 
 ## Monotonic Optimal Bining algorithm flow chart
 
-### Numerical part
+### Numerical variable
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/mob%20algorithm%20flow%20chart%20for%20numerical%20version.jpg" alt="The Algorithm flow chart for numerical MOB"/>
 </p>
 
-### Categorical part
-
+### Categorical variable
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/mob%20algorithm%20flow%20chart%20for%20categorical%20version.jpg" alt="The Algorithm flow chart for categorical MOB"/>
 </p>
@@ -46,3 +45,4 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We e
 # Author
 1.Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
 2. <br>
+3. <br>
