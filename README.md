@@ -21,13 +21,13 @@ Note: we revise test data (german_data_credit_cat.csv) and detail as show below 
 a.revise all column names <br>
 b.revise the value of CostMatrixRisk <br>
 
-* original value
-** 1 = Good Risk
-** 2 = Bad Risk
+* original value <br>
+* 1 = Good Risk <br>
+* 2 = Bad Risk <br>
 
-* revise value
-**  0 = Good Risk
-**1 = Bad Risk
+* revise value <br>
+* 0 = Good Risk <br>
+* 1 = Bad Risk <br>
 
 ### Step 3. Demo
 
