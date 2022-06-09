@@ -51,7 +51,7 @@ b.revise the value of CostMatrixRisk <br>
 
 ### Categorical variable
 <p align="center">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="The Algorithm flow chart for categorical MOB"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/chart/flow/mob%20algorithm%20flow%20chart%20for%20categorical%20version.jpg" alt="The Algorithm flow chart for categorical MOB"/>
 </p>
 
 # Reference
