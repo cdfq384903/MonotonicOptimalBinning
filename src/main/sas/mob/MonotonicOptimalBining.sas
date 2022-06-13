@@ -78,38 +78,42 @@
 					%end;
 				%put Variable exclude condition= [&var_exclude_condi.] ;
 
-				%createBinsSummaryBySfb(data_table = &g_data_table., y = &g_y., 
-                                        x = &var., 
-			                            exclude_condi = &var_exclude_condi., 
-			                            min_bins = &g_min_bins., 
-                                        max_samples = &g_max_samples., 
-			                            lib_name = &g_lib_name.);
-	            %runBinsMergeBySfb(x = &var., min_samples = &g_min_samples., 
-	                               min_bads = &g_min_bads., 
-                                   min_pvalue = &g_min_pvalue., 
-	                               min_bins = &g_min_bins., 
-                                   lib_name = &g_lib_name.);
-
-				%if &g_optimal_p_value. EQ 1 %then
+				%set_g_invalid_var(data_table = &g_data_table., x = &var.);
+				%if &g_invalid_var. = 0 %then
 					%do;
-						/*optimal pvalue*/
-						%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
-						%do %while(&g_current_bin_size. > &g_max_bins.);
-							%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
-							%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue;
-				            %runBinsMergeBySfb(x = &var., 
-                                               min_samples = &g_min_samples., 
+							%createBinsSummaryBySfb(data_table = &g_data_table., y = &g_y., 
+			                                        x = &var., 
+						                            exclude_condi = &var_exclude_condi., 
+						                            min_bins = &g_min_bins., 
+			                                        max_samples = &g_max_samples., 
+						                            lib_name = &g_lib_name.);
+				            %runBinsMergeBySfb(x = &var., min_samples = &g_min_samples., 
 				                               min_bads = &g_min_bads., 
-                                               min_pvalue = &g_min_pvalue., 
+			                                   min_pvalue = &g_min_pvalue., 
 				                               min_bins = &g_min_bins., 
-                                               lib_name = &g_lib_name.);
-							%set_g_current_bin_size(x = &var., 
-                                                    lib_name = &lib_name.);
-						%end;
-						%break_optimal_pvalue:
+			                                   lib_name = &g_lib_name.);
+
+							%if &g_optimal_p_value. EQ 1 %then
+								%do;
+									/*optimal pvalue*/
+									%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
+									%do %while(&g_current_bin_size. > &g_max_bins.);
+										%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
+										%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue;
+							            %runBinsMergeBySfb(x = &var., 
+			                                               min_samples = &g_min_samples., 
+							                               min_bads = &g_min_bads., 
+			                                               min_pvalue = &g_min_pvalue., 
+							                               min_bins = &g_min_bins., 
+			                                               lib_name = &g_lib_name.);
+										%set_g_current_bin_size(x = &var., 
+			                                                    lib_name = &lib_name.);
+									%end;
+									%break_optimal_pvalue:
+								%end;
+							%createWoeSummary(x = &var., lib_name = &g_lib_name., 
+				                              show_plot = &g_show_woe_plot.);
 					%end;
-				%createWoeSummary(x = &var., lib_name = &g_lib_name., 
-	                              show_plot = &g_show_woe_plot.);
 			%end;
 		%end;
 	%else
@@ -136,31 +140,35 @@
 					%end;
 				%put Variable exclude condition= [&var_exclude_condi.] ;
 
-				%createBinsSummaryByMfb(data_table = &g_data_table., y = &g_y., x = &var., 
-			                            exclude_condi = &var_exclude_condi., 
-			                            lib_name = &g_lib_name.);
-			    %runBinsMergeByMfb(x = &var., min_samples = &g_min_samples., 
-                                   min_bads = &g_min_bads., 
-	                               min_pvalue = &g_min_pvalue., 
-                                   lib_name = &g_lib_name.);
-				%if &g_optimal_p_value. EQ 1 %then
+				%set_g_invalid_var(data_table = &g_data_table., x = &var.);
+				%if &g_invalid_var. = 0 %then
 					%do;
-						/*optimal pvalue*/
-						%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
-						%do %while(&g_current_bin_size. > &g_max_bins.);
-							%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
-							%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue;
-							%runBinsMergeByMfb(x = &var., 
-                                               min_samples = &g_min_samples., 
-			                                   min_bads = &g_min_bads., 
-				                               min_pvalue = &g_min_pvalue., 
-                                               lib_name = &g_lib_name.);						
-							%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
-						%end;
-						%break_optimal_pvalue:
+						%createBinsSummaryByMfb(data_table = &g_data_table., y = &g_y., x = &var., 
+					                            exclude_condi = &var_exclude_condi., 
+					                            lib_name = &g_lib_name.);
+					    %runBinsMergeByMfb(x = &var., min_samples = &g_min_samples., 
+		                                   min_bads = &g_min_bads., 
+			                               min_pvalue = &g_min_pvalue., 
+		                                   lib_name = &g_lib_name.);
+						%if &g_optimal_p_value. EQ 1 %then
+							%do;
+								/*optimal pvalue*/
+								%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
+								%do %while(&g_current_bin_size. > &g_max_bins.);
+									%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
+									%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue;
+									%runBinsMergeByMfb(x = &var., 
+		                                               min_samples = &g_min_samples., 
+					                                   min_bads = &g_min_bads., 
+						                               min_pvalue = &g_min_pvalue., 
+		                                               lib_name = &g_lib_name.);						
+									%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
+								%end;
+								%break_optimal_pvalue:
+							%end;
+						%createWoeSummary(x = &var., lib_name = &g_lib_name., 
+			                              show_plot = &g_show_woe_plot.);
 					%end;
-				%createWoeSummary(x = &var., lib_name = &g_lib_name., 
-	                              show_plot = &g_show_woe_plot.);
 			%end;
 		%end;
 
@@ -169,6 +177,27 @@
 %MEND;
 
 /*======================= for priviate method =======================*/
+%MACRO set_g_invalid_var(data_table, x);
+	PROC SQL NOPRINT;
+		SELECT COUNT(*) AS total_record INTO : total_record
+           FROM &data_table.;
+
+		SELECT COUNT(*) AS missing_count INTO : missing_count
+           FROM &data_table.
+		 WHERE &x. IS MISSING;
+	QUIT;
+
+	%let diff = %eval(&missing_count. - &total_record.);
+	%if %sysevalf(&diff. NE 0) %then
+		%do;
+			%let g_invalid_var = 0;
+		%end;
+	%else
+		%do;
+			%let g_invalid_var = 1;
+		%end;
+%MEND;
+
 %MACRO set_g_max_bins(max_bins);
 	%if &max_bins. = %then
 		%do;
