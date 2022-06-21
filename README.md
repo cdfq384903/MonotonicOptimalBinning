@@ -133,5 +133,5 @@ The code below shows the execution of the cleanBinsDetail macro with recommended
 
 # Author
 1.Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
-2. <br>
+2.Denny Chen() <br>
 3. <br>
