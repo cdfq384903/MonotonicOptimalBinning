@@ -77,7 +77,7 @@ The code below shows the execution of the MOB macro with recommended parameters.
 3. %runMob();<br>
 
 #### Arguments
-1.data_table </br>
+1. data_table </br>
 Default: </br>
 Suggestion: </br>
 
