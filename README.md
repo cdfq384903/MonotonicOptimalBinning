@@ -69,11 +69,54 @@ XXXXXXXXXXXXXXXXXXXX
 
 ### Running the MOB algorithm macro
 The code below shows the execution of the MOB macro with recommended parameters.
-1. <br>
-2. <br>
-3. <br>
+1. %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
+      min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
+      show_woe_plot = &show_woe_plot.,
+      is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);<br>
+2. %initMonotonicFirstBining();<br>
+3. %runMob();<br>
 
 #### Arguments
+1.data_table </br>
+Default: </br>
+Suggestion: </br>
+
+2.y </br>
+Default: </br>
+Suggestion: </br>
+
+3.x </br>
+Default: </br>
+Suggestion: </br>
+
+4.exclude_condi </br>
+Default: </br>
+Suggestion: </br>
+
+5.min_samples </br>
+Default: </br>
+Suggestion: </br>
+
+6.min_bads </br>
+Default: </br>
+Suggestion: </br>
+
+7.min_pvalue </br>
+Default: </br>
+Suggestion: </br>
+
+8.show_woe_plot </br>
+Default: </br>
+Suggestion: </br>
+
+9.is_using_encoding_var </br>
+Default: </br>
+Suggestion: </br>
+
+10.lib_name </br>
+Default: </br>
+Suggestion: </br>
+
 #### Output
 
 ### Print WoE result
