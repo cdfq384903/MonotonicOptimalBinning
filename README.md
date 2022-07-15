@@ -78,43 +78,46 @@ The code below shows the execution of the MOB macro with recommended parameters.
 
 #### Arguments
 1. data_table </br>
-Default: </br>
+Default: None </br>
+Suggestion: a training data set. </br>
+The data_table argument defines the input data set. This set includes all candidate predictor variables and the target variable. For example, in MainMonotonicFirstBining.sas script you can try german_credit_card which is the data table structure after implement %readCsvFile macro.</br>
+
+2. y </br>
+Default: None </br>
+Suggestion: The label name of response variable.</br>
+The y argument defines the label name of response variable. For example, in MainMonotonicFirstBining.sas script you can try CostMatrixRisk under the data of german_credit_card.
+
+3. x </br>
+Default: None </br>
+Suggestion: The label names of predictor variable.</br>
+The x argument defines the label names of predictor variable. For example, in MainMonotonicFirstBining.sas script you can try AgeInYears CreditAmount DurationInMonth under the data of german_credit_card.
+
+4. exclude_condi </br>
+Default: None </br>
 Suggestion: </br>
 
-2.y </br>
-Default: </br>
+5. min_samples </br>
+Default: None </br>
 Suggestion: </br>
 
-3.x </br>
-Default: </br>
+6. min_bads </br>
+Default: None </br>
 Suggestion: </br>
 
-4.exclude_condi </br>
-Default: </br>
+7. min_pvalue </br>
+Default: None </br>
 Suggestion: </br>
 
-5.min_samples </br>
-Default: </br>
+8. show_woe_plot </br>
+Default: None </br>
 Suggestion: </br>
 
-6.min_bads </br>
-Default: </br>
+9. is_using_encoding_var </br>
+Default: None </br>
 Suggestion: </br>
 
-7.min_pvalue </br>
-Default: </br>
-Suggestion: </br>
-
-8.show_woe_plot </br>
-Default: </br>
-Suggestion: </br>
-
-9.is_using_encoding_var </br>
-Default: </br>
-Suggestion: </br>
-
-10.lib_name </br>
-Default: </br>
+10. lib_name </br>
+Default: None </br>
 Suggestion: </br>
 
 #### Output
