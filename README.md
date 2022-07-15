@@ -124,37 +124,91 @@ Suggestion: </br>
 
 ### Print WoE result
 The code below shows the execution of the printWithoutCname macro with recommended parameters.
-1. <br>
+1. %printWithoutCname(lib_name = &lib_name.); <br>
 
 #### Arguments
+1. lib_name </br>
+Default: None </br>
+Suggestion: </br>
+
 #### Output
 
 ### Generate the IV summary table
 The code below shows the execution of the getIvPerVar macro with recommended parameters.
-1. <br>
+1. %getIvPerVar(lib_name = &lib_name., min_iv = 0.06, min_obs_rate = 0.05, 
+             max_obs_rate = 0.8, min_bin_size = 3, max_bin_size = 10, 
+             min_bad_count = 1); <br>
 
 #### Arguments
+1. lib_name </br>
+Default: None </br>
+Suggestion: </br>
+
+2. min_iv </br>
+Default: None </br>
+Suggestion: </br>
+
+3. min_obs_rate </br>
+Default: None </br>
+Suggestion: </br>
+
+4. max_obs_rate </br>
+Default: None </br>
+Suggestion: </br>
+
+5. min_bin_size </br>
+Default: None </br>
+Suggestion: </br>
+
+6. max_bin_size </br>
+Default: None </br>
+Suggestion: </br>
+
+7. min_bad_count </br>
+Default: None </br>
+Suggestion: </br>
+
 #### Output
 
 ### Print WoE bar chart via IV summary filter
 The code below shows the execution of the printWoeBarLineChart macro with recommended parameters.
-1. <br>
+1. %printWoeBarLineChart(lib_name = &lib_name., min_iv = 0.001); <br>
 
 #### Arguments
+1. lib_name </br>
+Default: None </br>
+Suggestion: </br>
+
+2. min_iv </br>
+Default: None </br>
+Suggestion: </br>
+
 #### Output
 
 ### Generate split rule
 The code below shows the execution of the exportSplitRule macro with recommended parameters.
-1. <br>
+1. %exportSplitRule(lib_name = &lib_name., output_file = /home/u60021675/output/); <br>
 
 #### Arguments
+1. lib_name </br>
+Default: None </br>
+Suggestion: </br>
+
+2. output_file </br>
+Default: None </br>
+Suggestion: </br>
+
 #### Output
 
 ### Clear useless data table
 The code below shows the execution of the cleanBinsDetail macro with recommended parameters.
-1. <br>
+1. %cleanBinsDetail(bins_lib = &lib_name.); <br>
 
 #### Arguments
+1. bins_lib </br>
+Default: None </br>
+Suggestion: </br>
+
 #### Output
 
 ## Monotonic Optimal Bining algorithm flow chart
