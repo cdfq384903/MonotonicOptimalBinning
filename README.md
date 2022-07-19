@@ -130,15 +130,18 @@ The lib_name argument defines the output library name will be stroed. For exampl
 
 11. **max_samples** </br>
 Default: None </br>
-Suggestion:  </br>
+Suggestion: Only for initSizeFirstBining macro. The maximum sample will be keep per each bins. Usually maximum sample parameter suggest to be 40% of population. </br>
+The max_samples argument defines the sample wiil be keep per each bins. For example, in MainSizeFirstBining.sas script you can try %sysevalf(1000 * 0.4). It means the maximum samples will be constrain by 40% of population.
 
 12. **min_bins** </br>
 Default: None </br>
-Suggestion:  </br>
+Suggestion: Only for initSizeFirstBining macro. The minimum bins will be keep in binning process. </br>
+The min_bins argument defines the minimum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 3. It means the minimum bins will constraine to be 3.
 
 13. **max_bins** </br>
 Default: None </br>
-Suggestion:  </br>
+Suggestion: Only for initSizeFirstBining macro. The maximum bins will be keep in binning process. Note that max_bins must to be higher than min_bins.</br>
+The max_bins argument defines the maximum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 7. It means the maximum bins will constraine to be 7.
 
 #### Output
 
