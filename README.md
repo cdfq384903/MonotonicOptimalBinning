@@ -269,7 +269,7 @@ The code below shows the execution of the cleanBinsDetail macro with recommended
 #### Arguments
 1. **bins_lib** </br>
 Default: None </br>
-Suggestion: The library which will be clear useless file. Suggest</br>
+Suggestion: The library which will be clear useless file. Suggest using the same value with %init macro.</br>
 The bins_lib argument defines the library which will be clear useless file. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means bins_summary and exclude file was be deleted on TMPWOE(/home/u60021675/output) of WORK folder.
 
 #### Output
