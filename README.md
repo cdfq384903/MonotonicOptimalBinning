@@ -86,41 +86,41 @@ Default: None </br>
 Suggestion: a training data set. </br>
 The data_table argument defines the input data set. This set includes all candidate predictor variables and the target variable. For example, in MainMonotonicFirstBining.sas script you can try german_credit_card which is the data table structure after implement %readCsvFile macro.</br>
 
-2. y </br>
+2. **y** </br>
 Default: None </br>
 Suggestion: The label name of response variable.</br>
 The y argument defines the label name of response variable. For example, in MainMonotonicFirstBining.sas script you can try CostMatrixRisk under the data of german_credit_card.
 
-3. x </br>
+3. **x** </br>
 Default: None </br>
 Suggestion: The label names of predictor variable.</br>
 The x argument defines the label names of predictor variable. For example, in MainMonotonicFirstBining.sas script you can try AgeInYears CreditAmount DurationInMonth under the data of german_credit_card.
 
-4. exclude_condi </br>
+4. **exclude_condi** </br>
 Default: None </br>
 Suggestion: </br>
 
-5. min_samples </br>
+5. **min_samples** </br>
 Default: None </br>
 Suggestion: </br>
 
-6. min_bads </br>
+6. **min_bads** </br>
 Default: None </br>
 Suggestion: </br>
 
-7. min_pvalue </br>
+7. **min_pvalue** </br>
 Default: None </br>
 Suggestion: </br>
 
-8. show_woe_plot </br>
+8. **show_woe_plot** </br>
 Default: None </br>
 Suggestion: </br>
 
-9. is_using_encoding_var </br>
+9. **is_using_encoding_var** </br>
 Default: None </br>
 Suggestion: </br>
 
-10. lib_name </br>
+10. **lib_name** </br>
 Default: None </br>
 Suggestion: </br>
 
@@ -131,7 +131,7 @@ The code below shows the execution of the printWithoutCname macro with recommend
 1. %printWithoutCname(lib_name = &lib_name.); <br>
 
 #### Arguments
-1. lib_name </br>
+1. **lib_name** </br>
 Default: None </br>
 Suggestion: </br>
 
@@ -144,31 +144,31 @@ The code below shows the execution of the getIvPerVar macro with recommended par
              min_bad_count = 1); <br>
 
 #### Arguments
-1. lib_name </br>
+1. **lib_name** </br>
 Default: None </br>
 Suggestion: </br>
 
-2. min_iv </br>
+2. **min_iv** </br>
 Default: None </br>
 Suggestion: </br>
 
-3. min_obs_rate </br>
+3. **min_obs_rate** </br>
 Default: None </br>
 Suggestion: </br>
 
-4. max_obs_rate </br>
+4. **max_obs_rate** </br>
 Default: None </br>
 Suggestion: </br>
 
-5. min_bin_size </br>
+5. **min_bin_size** </br>
 Default: None </br>
 Suggestion: </br>
 
-6. max_bin_size </br>
+6. **max_bin_size** </br>
 Default: None </br>
 Suggestion: </br>
 
-7. min_bad_count </br>
+7. **min_bad_count** </br>
 Default: None </br>
 Suggestion: </br>
 
@@ -179,11 +179,11 @@ The code below shows the execution of the printWoeBarLineChart macro with recomm
 1. %printWoeBarLineChart(lib_name = &lib_name., min_iv = 0.001); <br>
 
 #### Arguments
-1. lib_name </br>
+1. **lib_name** </br>
 Default: None </br>
 Suggestion: </br>
 
-2. min_iv </br>
+2. **min_iv** </br>
 Default: None </br>
 Suggestion: </br>
 
@@ -194,11 +194,11 @@ The code below shows the execution of the exportSplitRule macro with recommended
 1. %exportSplitRule(lib_name = &lib_name., output_file = /home/u60021675/output/); <br>
 
 #### Arguments
-1. lib_name </br>
+1. **lib_name** </br>
 Default: None </br>
 Suggestion: </br>
 
-2. output_file </br>
+2. **output_file** </br>
 Default: None </br>
 Suggestion: </br>
 
@@ -209,7 +209,7 @@ The code below shows the execution of the cleanBinsDetail macro with recommended
 1. %cleanBinsDetail(bins_lib = &lib_name.); <br>
 
 #### Arguments
-1. bins_lib </br>
+1. **bins_lib** </br>
 Default: None </br>
 Suggestion: </br>
 
