@@ -81,7 +81,7 @@ The code below shows the execution of the SFB macro with recommended parameters.
 3. %runMob(); </br> 
 
 #### Arguments
-1. data_table </br>
+1. **data_table </br>
 Default: None </br>
 Suggestion: a training data set. </br>
 The data_table argument defines the input data set. This set includes all candidate predictor variables and the target variable. For example, in MainMonotonicFirstBining.sas script you can try german_credit_card which is the data table structure after implement %readCsvFile macro.</br>
