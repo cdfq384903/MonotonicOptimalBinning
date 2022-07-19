@@ -226,7 +226,7 @@ The output of runing getIvPerVar macro. It shows the IV information for all disc
 
 ### Print WoE bar chart via IV summary filter
 The code below shows the execution of the printWoeBarLineChart macro with recommended parameters.
-1. %printWoeBarLineChart(lib_name = &lib_name., min_iv = 0.001); <br>
+1. %printWoeBarLineChart(lib_name, min_iv); <br>
 
 #### Arguments
 1. **lib_name** </br>
@@ -245,7 +245,7 @@ The output of runing printWoeBarLineChart macro. It shows the variable of woe re
 
 ### Generate split rule
 The code below shows the execution of the exportSplitRule macro with recommended parameters.
-1. %exportSplitRule(lib_name = &lib_name., output_file = /home/u60021675/output/); <br>
+1. %exportSplitRule(lib_name, output_file); <br>
 
 #### Arguments
 1. **lib_name** </br>
@@ -264,7 +264,7 @@ The output of runing exportSplitRule macro. It shows the binning split rule whic
 
 ### Clear useless data table
 The code below shows the execution of the cleanBinsDetail macro with recommended parameters.
-1. %cleanBinsDetail(bins_lib = &lib_name.); <br>
+1. %cleanBinsDetail(bins_lib); <br>
 
 #### Arguments
 1. **bins_lib** </br>
