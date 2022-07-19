@@ -69,19 +69,15 @@ XXXXXXXXXXXXXXXXXXXX
 
 ### Running the MOB algorithm macro
 The code below shows the execution of the MFB macro with recommended parameters.
-1. %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
-      min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
-      show_woe_plot = &show_woe_plot.,
-      is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);<br>
+1. %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
+      show_woe_plot, is_using_encoding_var, lib_name); <br>
 2. %initMonotonicFirstBining();<br>
 3. %runMob();<br>
 
 The code below shows the execution of the SFB macro with recommended parameters.
-1. %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
-      min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
-      show_woe_plot = &show_woe_plot.,
-      is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.); </br>
-2. %initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7); </br>
+1. %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
+      show_woe_plot , is_using_encoding_var , lib_name ); </br>
+2. %initSizeFirstBining(max_samples , min_bins , max_bins); </br>
 3. %runMob(); </br> 
 
 #### Arguments
