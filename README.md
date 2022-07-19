@@ -233,6 +233,15 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
+1. The output file after finished MOB algorithm.
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
+</p>
+
+2. The woe summary result after finished MON algorithm
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
+</p>
 
 ## Monotonic Optimal Bining algorithm flow chart
 
