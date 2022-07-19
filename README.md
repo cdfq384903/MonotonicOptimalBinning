@@ -164,6 +164,10 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
+The output of runing printWithoutCname macro. It shows the result of all variable which was discretized.
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/printWithoutCname.png" alt=""/>
+</p>
 
 ### Generate the IV summary table
 The code below shows the execution of the getIvPerVar macro with recommended parameters.
@@ -201,6 +205,18 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
+The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are additional notes.
+1. iv: the value of information value which
+2. is_iv_pass:
+3. is_obs_pass:
+4. is_bad_count_pass:
+5. is_bin_pass:
+6. is_woe_pass:
+7. woe_dir:
+
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/getIvPerVar.png" alt=""/>
+</p>
 
 ### Print WoE bar chart via IV summary filter
 The code below shows the execution of the printWoeBarLineChart macro with recommended parameters.
@@ -216,6 +232,10 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
+The output of runing printWoeBarLineChart macro. It shows the variable of woe result under the min_iv constrain.
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/printWoeBarLineChart.png" alt=""/>
+</p>
 
 ### Generate split rule
 The code below shows the execution of the exportSplitRule macro with recommended parameters.
@@ -231,6 +251,10 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
+The output of runing exportSplitRule macro. It shows the binning split rule which was discretized.
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/exportSplitRule.jpg" alt=""/>
+</p>
 
 ### Clear useless data table
 The code below shows the execution of the cleanBinsDetail macro with recommended parameters.
@@ -242,6 +266,10 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
+The output of runing cleanBinsDetail macro. It shows the bins_summary and exclude file was be deleted.
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/cleanBinsDetail.png" alt=""/>
+</p>
 
 ## Monotonic Optimal Bining algorithm flow chart
 
