@@ -88,29 +88,32 @@ The data_table argument defines the input data set. This set includes all candid
 
 2. **y** </br>
 Default: None </br>
-Suggestion: The label name of response variable.</br>
+Suggestion: The label name of response variable. </br>
 The y argument defines the label name of response variable. For example, in MainMonotonicFirstBining.sas script you can try CostMatrixRisk under the data of german_credit_card.
 
 3. **x** </br>
 Default: None </br>
-Suggestion: The label names of predictor variable.</br>
+Suggestion: The label names of predictor variable. </br>
 The x argument defines the label names of predictor variable. For example, in MainMonotonicFirstBining.sas script you can try AgeInYears CreditAmount DurationInMonth under the data of german_credit_card.
 
 4. **exclude_condi** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The syntax of exclude condition per each predictor variable. </br>
+The exclude_condi argument defines the syntax of exclude condition per each predictor variable. For example, in MainMonotonicFirstBining.sas script you can try <-99999999. It means the algorithm will be excluded when the value of every predictor variable less then -99999999.
 
 5. **min_samples** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The minimum sample will be keep per each bins. Usually minimum sample parameter suggest to be 5% of population. </br>
+The min_samples argument defines the sample wiil be keep per each bins. For example, in MainMonotonicFirstBining.sas script you can try %sysevalf(1000 * 0.05). It means the minimum samples will be constrain by 5% of population.
 
 6. **min_bads** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The minimum bads will be keep per bins. Usually minimum bads parameter suggest to be 1. </br>
+The min_bads argument defines the bads will be keep per bins. For example, in MainMonotonicFirstBining.sas script you can try 10. It means the minimum bads will be constrain by 10.
 
 7. **min_pvalue** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The minimum threshold of p value is the merge constraints when algorithm doing merge process between bins. Usually more higher minimum p value the algorithm will not merge between bins. </br>
 
 8. **show_woe_plot** </br>
 Default: None </br>
