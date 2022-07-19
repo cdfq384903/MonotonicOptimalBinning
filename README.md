@@ -161,7 +161,8 @@ The code below shows the execution of the printWithoutCname macro with recommend
 #### Arguments
 1. **lib_name** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The library which will be loaded and show woe summary result. </br>
+The lib_name argument defines the library which will be loaded and show woe summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWithoutCname macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 #### Output
 The output of runing printWithoutCname macro. It shows the result of all variable which was discretized.
@@ -171,38 +172,43 @@ The output of runing printWithoutCname macro. It shows the result of all variabl
 
 ### Generate the IV summary table
 The code below shows the execution of the getIvPerVar macro with recommended parameters.
-1. %getIvPerVar(lib_name = &lib_name., min_iv = 0.06, min_obs_rate = 0.05, 
-             max_obs_rate = 0.8, min_bin_size = 3, max_bin_size = 10, 
-             min_bad_count = 1); <br>
+1. %getIvPerVar(lib_name, min_iv, min_obs_rate, max_obs_rate, min_bin_size, max_bin_size, min_bad_count); <br>
 
 #### Arguments
 1. **lib_name** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The library which will be loaded and show IV summary result. </br>
+The lib_name argument defines the library which will be loaded and show IV summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the getIvPerVar macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 2. **min_iv** </br>
 Default: None </br>
 Suggestion: </br>
+The min_iv argument defines
 
 3. **min_obs_rate** </br>
 Default: None </br>
 Suggestion: </br>
+The min_obs_rate argument defines
 
 4. **max_obs_rate** </br>
 Default: None </br>
 Suggestion: </br>
+The max_obs_rate argument defines
 
 5. **min_bin_size** </br>
 Default: None </br>
 Suggestion: </br>
+The min_bin_size argument defines
 
 6. **max_bin_size** </br>
 Default: None </br>
 Suggestion: </br>
+The max_bin_size argument defines
 
 7. **min_bad_count** </br>
 Default: None </br>
 Suggestion: </br>
+The min_bad_count argument defines
 
 #### Output
 The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are additional notes.
@@ -263,7 +269,8 @@ The code below shows the execution of the cleanBinsDetail macro with recommended
 #### Arguments
 1. **bins_lib** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The library which will be clear useless file. Suggest</br>
+The bins_lib argument defines the library which will be clear useless file. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means bins_summary and exclude file was be deleted on TMPWOE(/home/u60021675/output) of WORK folder.
 
 #### Output
 The output of runing cleanBinsDetail macro. It shows the bins_summary and exclude file was be deleted.
