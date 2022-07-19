@@ -149,7 +149,7 @@ The max_bins argument defines the maximum bins will be keep in binning process. 
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
 </p>
 
-2. The woe summary result after finished MON algorithm
+2. The woe summary result after finished MOB algorithm
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/woe%20summary%20v2.png" alt=""/>
 </p>
