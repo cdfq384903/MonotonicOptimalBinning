@@ -60,9 +60,6 @@ Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth v
 
 #### Categorical variable
 
-## Conclusion
-XXXXXXXXXXXXXXXXXXXX
-
 # Appendix
 
 ## The MonotonicOptimalBining core class
@@ -114,18 +111,22 @@ The min_bads argument defines the bads will be keep per bins. For example, in Ma
 7. **min_pvalue** </br>
 Default: None </br>
 Suggestion: The minimum threshold of p value is the merge constraints when algorithm doing merge process between bins. Usually more higher minimum p value the algorithm will not merge between bins. </br>
+The min_pvalue argument defines the minimum threshold of p value. For eaxmple, in MainMonotonicFirstBining.sas script you can try 0.35. It means when algorithm doing the process of bins merge. The bin will be merge between i and i+1, if the test of statistic value(like z or chi) is higher than 0.35.
 
 8. **show_woe_plot** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The boolean(0, 1) of show woe plot result when doing mob algorithm. </br>
+The show_woe_plot argument defines the boolean(0, 1) of show woe plot result. For example, in MainMonotonicFirstBining.sas script you can try 1. It means when algorithm doing binning. It will show the woe result per each predictor variable.
 
 9. **is_using_encoding_var** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The boolean(0, 1) of using encoding var table. If your length of label name(x or y) is too long for sas macro, suggest you should open this parameter. </br>
+The is_using_encoding_var argument defines the boolean(0, 1) of using encoding var table. For example, in MainMonotonicFirstBining.sas script you can try 1. It means the attributes name of data will be changed to be encoding variable.
 
 10. **lib_name** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The library name will be output. If you don't have any idea, you can try work. </br>
+The lib_name argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE of WORK folder.
 
 #### Output
 
