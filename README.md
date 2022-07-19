@@ -126,7 +126,7 @@ The is_using_encoding_var argument defines the boolean(0, 1) of using encoding v
 10. **lib_name** </br>
 Default: None </br>
 Suggestion: The library name will be output. If you don't have any idea, you can try work. </br>
-The lib_name argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE of WORK folder.
+The lib_name argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE(/home/u60021675/output) of WORK folder.
 
 11. **max_samples** </br>
 Default: None </br>
