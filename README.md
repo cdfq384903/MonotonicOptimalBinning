@@ -144,6 +144,15 @@ Suggestion: Only for initSizeFirstBining macro. The maximum bins will be keep in
 The max_bins argument defines the maximum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 7. It means the maximum bins will constraine to be 7.
 
 #### Output
+1. The output file after finished MOB algorithm.
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
+</p>
+
+2. The woe summary result after finished MON algorithm
+<p align="center">
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/woe%20summary%20v2.png" alt=""/>
+</p>
 
 ### Print WoE result
 The code below shows the execution of the printWithoutCname macro with recommended parameters.
@@ -233,15 +242,6 @@ Default: None </br>
 Suggestion: </br>
 
 #### Output
-1. The output file after finished MOB algorithm.
-<p align="center">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
-</p>
-
-2. The woe summary result after finished MON algorithm
-<p align="center">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
-</p>
 
 ## Monotonic Optimal Bining algorithm flow chart
 
