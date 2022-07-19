@@ -128,6 +128,18 @@ Default: None </br>
 Suggestion: The library name will be output. If you don't have any idea, you can try work. </br>
 The lib_name argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE of WORK folder.
 
+11. **max_samples** </br>
+Default: None </br>
+Suggestion:  </br>
+
+12. **min_bins** </br>
+Default: None </br>
+Suggestion:  </br>
+
+13. **max_bins** </br>
+Default: None </br>
+Suggestion:  </br>
+
 #### Output
 
 ### Print WoE result
