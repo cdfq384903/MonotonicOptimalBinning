@@ -1,6 +1,8 @@
 <h1><p align = "center">
  Monotonic Optimal Binning in Credit Risk
 </p></h1>
+
+
 This project mainly implements the Monotonic Optimal Bining(MOB) algorithm in `SAS 9.4`. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of too many bins, we optimize the p-value and provide `bins size first binning` and `monotonicity first binning` methods for users to discretize data more conveniently.
 
 ## How to use
