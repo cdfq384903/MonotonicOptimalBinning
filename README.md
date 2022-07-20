@@ -44,7 +44,7 @@ Note: we had made some modifications to the dataset(german_data_credit_cat.csv).
  
 Run `MainSizeFirstBining.sas` script <br>
  
- ```
+ ``` .sas
  /*for init parameter*/
  %let data_table = german_credit_card;
  %let y = CostMatrixRisk;
@@ -101,7 +101,7 @@ Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth v
 
 ### Running the MOB algorithm macro
 The code below shows the execution of the MFB macro with recommended parameters.
-```
+```.sas
  %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
        show_woe_plot, is_using_encoding_var, lib_name); <br>
  %initMonotonicFirstBining();<br>
