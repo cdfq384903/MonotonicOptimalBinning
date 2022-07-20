@@ -1,9 +1,11 @@
-# MonotonicOptimalBinning
-This project mainly implements the Monotonic Optimal Bining(MOB) algorithm. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of too many bins, we optimize the p-value and provide bins size first binning and monotonicity first binning methods for user to  discretize data more conveniently.
+<h1><p align = "center">
+ Monotonic Optimal Binning in Credit Risk
+</p></h1>
+This project mainly implements the Monotonic Optimal Bining(MOB) algorithm in `SAS 9.4`. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of too many bins, we optimize the p-value and provide `bins size first binning` and `monotonicity first binning` methods for users to discretize data more conveniently.
 
 ## How to use
 ### Step 0. Set up develop environment
-1. Make sure you have already sign up sas member. If not please sign up as following https://www.sas.com/profile/ui/#/create<br>
+1. Make sure you have already signed up a account. If not please sign up as following https://www.sas.com/profile/ui/#/create<br>
 2. Create folder structure as following <br>
 <p align="left">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure1.png" alt="folder structure 1"/>
