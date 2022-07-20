@@ -155,7 +155,7 @@ The max_bins argument defines the maximum bins will be keep in binning process. 
 </p>
 
 ### Print WoE result
-The code below shows the execution of the printWithoutCname macro with recommended parameters.
+The code below shows the execution of the printWithoutCname macro with recommended parameters. <br>
 %printWithoutCname(lib_name); <br>
 
 #### Arguments
