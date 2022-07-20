@@ -1,12 +1,14 @@
-<h1><p align = "center">
+
+<h1><p align = "center"; font-family: "Calibri">
  Monotonic Optimal Binning in Credit Risk
 </p></h1>
 
 <div align = "justify">
 This project mainly implements the Monotonic Optimal Bining(MOB) algorithm in `SAS 9.4`. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of too many bins, we optimize the p-value and provide `bins size first binning` and `monotonicity first binning` methods for users to discretize data more conveniently.
 
-
-## How to use
+ 
+ ## How to use 
+ 
 ### Step 0. Set up develop environment
 1. Make sure you have already created an user account. If not please sign up : [Here](https://www.sas.com/profile/ui/#/create)<br>
 2. Create the folder structure as following <br>
@@ -33,16 +35,45 @@ Note: we had made some modifications to the dataset(german_data_credit_cat.csv).
 |Bad  Risk            |2               |1             |
 
 
-### Step 3. Demo
+### Step 3. Usage Demo
 
 #### Numerical variable
 
-##### Size First Bining(SFB)
-Run MainSizeFirstBining.sas script <br>
-Note: Undering SFB algorithm. The WoE transformation result of DurationInMonth variable. It presents the monotonicity of WoE. <br>
+##### Size First Binning(SFB)
+ 
+Run `MainSizeFirstBining.sas` script <br>
+ 
+ ```
+ /*for init parameter*/
+ %let data_table = german_credit_card;
+ %let y = CostMatrixRisk;
+ %let x = AgeInYears CreditAmount DurationInMonth;
+ %let exclude_condi = < -99999999;
+ %let min_samples = %sysevalf(1000 * 0.05);
+ %let min_bads = 10;
+ %let min_pvalue = 0.35;
+ %let show_woe_plot = 1;
+ %let lib_name = TMPWOE;
+ %let is_using_encoding_var = 1;
+
+ /*for SFB*/
+ %let min_bins = 3;
+ %let max_samples = %sysevalf(1000 * 0.4);
+
+ %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
+       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
+       show_woe_plot = &show_woe_plot.,
+       is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
+ %initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7);
+ %runMob();
+ ```
+**RESULT OUTPUT:** <br> 
+
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
 </p>
+
+> Note: The image below shows the Woe Transformation Result of variable `DurationInMonth` with applying `SFB Algorithm`. It clearly presents the monotonicity of the WoE value. <br>
 
 Note: Undering SFB algorithm. The WoE transformation result of CreditAmount variable. It violates the monotonicity of WoE because SBF will preferentially terminate the merged result according to the limit of bins parameter.<br>
 <p align="center">
@@ -69,11 +100,12 @@ Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth v
 
 ### Running the MOB algorithm macro
 The code below shows the execution of the MFB macro with recommended parameters.
-1. %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
-      show_woe_plot, is_using_encoding_var, lib_name); <br>
-2. %initMonotonicFirstBining();<br>
-3. %runMob();<br>
-
+```
+ %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
+       show_woe_plot, is_using_encoding_var, lib_name); <br>
+ %initMonotonicFirstBining();<br>
+ %runMob();<br>
+```
 The code below shows the execution of the SFB macro with recommended parameters.
 1. %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
       show_woe_plot , is_using_encoding_var , lib_name ); </br>
