@@ -156,7 +156,7 @@ The max_bins argument defines the maximum bins will be keep in binning process. 
 
 ### Print WoE result
 The code below shows the execution of the printWithoutCname macro with recommended parameters.
-1. %printWithoutCname(lib_name); <br>
+%printWithoutCname(lib_name); <br>
 
 #### Arguments
 1. **lib_name** </br>
@@ -172,7 +172,7 @@ The output of runing printWithoutCname macro. It shows the result of all variabl
 
 ### Generate the IV summary table
 The code below shows the execution of the getIvPerVar macro with recommended parameters.
-1. %getIvPerVar(lib_name, min_iv, min_obs_rate, max_obs_rate, min_bin_size, max_bin_size, min_bad_count); <br>
+%getIvPerVar(lib_name, min_iv, min_obs_rate, max_obs_rate, min_bin_size, max_bin_size, min_bad_count); <br>
 
 #### Arguments
 1. **lib_name** </br>
@@ -226,7 +226,7 @@ The output of runing getIvPerVar macro. It shows the IV information for all disc
 
 ### Print WoE bar chart via IV summary filter
 The code below shows the execution of the printWoeBarLineChart macro with recommended parameters.
-1. %printWoeBarLineChart(lib_name, min_iv); <br>
+%printWoeBarLineChart(lib_name, min_iv); <br>
 
 #### Arguments
 1. **lib_name** </br>
@@ -268,7 +268,7 @@ The output of runing exportSplitRule macro. It shows the binning split rule whic
 
 ### Clear useless data table
 The code below shows the execution of the cleanBinsDetail macro with recommended parameters.
-1. %cleanBinsDetail(bins_lib); <br>
+%cleanBinsDetail(bins_lib); <br>
 
 #### Arguments
 1. **bins_lib** </br>
