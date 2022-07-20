@@ -211,7 +211,7 @@ Suggestion: </br>
 The min_bad_count argument defines
 
 #### Output
-The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are additional notes.
+The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are some additional notes.
 1. iv: the value of information value which
 2. is_iv_pass:
 3. is_obs_pass:
@@ -231,11 +231,12 @@ The code below shows the execution of the printWoeBarLineChart macro with recomm
 #### Arguments
 1. **lib_name** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The library which will be loaded and print WoE bar chart via IV summary. </br>
+The lib_name argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the getIvPerVar macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 2. **min_iv** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The minimum IV print woe plot for iv constrain </br>
 
 #### Output
 The output of runing printWoeBarLineChart macro. It shows the variable of woe result under the min_iv constrain.
