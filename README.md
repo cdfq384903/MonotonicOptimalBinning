@@ -183,42 +183,42 @@ The lib_name argument defines the library which will be loaded and show IV summa
 2. **min_iv** </br>
 Default: None </br>
 Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. </br>
-The min_iv argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.001. It means the getIvPerVar macro will show result if IV higher than 0.001.
+The min_iv argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.1. It means the getIvPerVar macro will show IV pass result if IV higher than 0.1.
 
 3. **min_obs_rate** </br>
 Default: None </br>
-Suggestion: </br>
-The min_obs_rate argument defines
+Suggestion: The minimum threshold of observation rate. Usually set at least 0.05. </br>
+The min_obs_rate argument defines minimum threshold of observation rate. For example, in MainMonotonicFirstBining.sas script you can try 0.05. It means the getIvPerVar macro will show observation rate pass result if value higher than 0.05 and lower than max_obs_rate.
 
 4. **max_obs_rate** </br>
 Default: None </br>
-Suggestion: </br>
-The max_obs_rate argument defines
+Suggestion: The maximum threshold of observation rate. Usually set around 0.8. </br>
+The max_obs_rate argument defines maximum threshold of observation rate. For example, in MainMonotonicFirstBining.sas script you can try 0.8. It means the getIvPerVar macro will show observation rate pass result if value lower than 0.8 and higher than min_obs_rate.
 
 5. **min_bin_size** </br>
 Default: None </br>
-Suggestion: </br>
-The min_bin_size argument defines
+Suggestion: The minimum threshold of bins size. Usually set at least 3. </br>
+The min_bin_size argument defines the minimum threshold of bins size. For example, in MainMonotonicFirstBining.sas script you can try 3. It means the getIvPerVar macro will show bins size pass result if value higher than 3 and lower than max_bin_size.
 
 6. **max_bin_size** </br>
 Default: None </br>
-Suggestion: </br>
-The max_bin_size argument defines
+Suggestion: The maximum threshold of bins size. Usually set at least 10. </br>
+The max_bin_size argument defines the maximum threshold of bins size. For example, in MainMonotonicFirstBining.sas script you can try 10. It means the getIvPerVar macro will show bins size pass result if value lower than 10 and higher than min_bin_size.
 
 7. **min_bad_count** </br>
 Default: None </br>
-Suggestion: </br>
-The min_bad_count argument defines
+Suggestion: The minimum threshold of bad count. Usually set at least 1. </br>
+The min_bad_count argument defines the minimum threshold of bad count. For example, in MainMonotonicFirstBining.sas script you can try 1. It means the getIvPerVar macro will show bad count result if value higher than 1 and higher than min_bad_count.
 
 #### Output
 The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are some additional notes.
-1. iv: the value of information value which
-2. is_iv_pass:
-3. is_obs_pass:
-4. is_bad_count_pass:
-5. is_bin_pass:
-6. is_woe_pass:
-7. woe_dir:
+1. iv: the information value per each discretized variable.
+2. is_iv_pass: true(1) if IV higher than min_iv else than false(0).
+3. is_obs_pass: true(1) if observation rate between min_obs_rate and max_obs_rate else than false(0).
+4. is_bad_count_pass: true(1) if bad count higher than min_bad_count else than false(0).
+5. is_bin_pass: true(1) if bin size between min_bin_size and max_bin_size else than false(0).
+6. is_woe_pass: true(1) if the value of WoE have monotonicity properties else than false(0).
+7. woe_dir: asc if the WoE value have monotonically increasing, desc if the WoE value have monotonically decreasing else than null.
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/getIvPerVar.png" alt=""/>
