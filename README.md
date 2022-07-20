@@ -10,7 +10,7 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm in `S
  
  ## How to use 
  
-### Step 0. Set up develop environment
+### Step 0. Set up the environment
 1. Make sure you have already created an user account. If not please sign up : [Here](https://www.sas.com/profile/ui/#/create)<br>
 2. Create the folder structure as following <br>
 <p align="left">
