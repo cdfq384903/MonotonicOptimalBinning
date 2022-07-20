@@ -182,8 +182,8 @@ The lib_name argument defines the library which will be loaded and show IV summa
 
 2. **min_iv** </br>
 Default: None </br>
-Suggestion: </br>
-The min_iv argument defines
+Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. </br>
+The min_iv argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.001. It means the getIvPerVar macro will show result if IV higher than 0.001.
 
 3. **min_obs_rate** </br>
 Default: None </br>
@@ -232,11 +232,12 @@ The code below shows the execution of the printWoeBarLineChart macro with recomm
 1. **lib_name** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and print WoE bar chart via IV summary. </br>
-The lib_name argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the getIvPerVar macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The lib_name argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWoeBarLineChart macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 2. **min_iv** </br>
 Default: None </br>
-Suggestion: The minimum IV print woe plot for iv constrain </br>
+Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. </br>
+The min_iv argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.001. It means the printWoeBarLineChart macro will show result if IV higher than 0.001.
 
 #### Output
 The output of runing printWoeBarLineChart macro. It shows the variable of woe result under the min_iv constrain.
@@ -251,11 +252,13 @@ The code below shows the execution of the exportSplitRule macro with recommended
 #### Arguments
 1. **lib_name** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The library which will be loaded and export split rule. </br>
+The lib_name argument defines the library which will be loaded and export split rule. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the exportSplitRule macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 2. **output_file** </br>
 Default: None </br>
-Suggestion: </br>
+Suggestion: The output file path which will be export split rule. </br>
+The output_file argument defines the output file path which will be export split rule. For example, in MainMonotonicFirstBining.sas script you can try /home/u60021675/output/. It means the exportSplitRule macro will export split rule on /home/u60021675/output/.
 
 #### Output
 The output of runing exportSplitRule macro. It shows the binning split rule which was discretized.
