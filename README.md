@@ -2,13 +2,14 @@
  Monotonic Optimal Binning in Credit Risk
 </p></h1>
 
-
+<div align = "justify">
 This project mainly implements the Monotonic Optimal Bining(MOB) algorithm in `SAS 9.4`. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of too many bins, we optimize the p-value and provide `bins size first binning` and `monotonicity first binning` methods for users to discretize data more conveniently.
+
 
 ## How to use
 ### Step 0. Set up develop environment
-1. Make sure you have already signed up a account. If not please sign up as following https://www.sas.com/profile/ui/#/create<br>
-2. Create folder structure as following <br>
+1. Make sure you have already created an user account. If not please sign up : [Here](https://www.sas.com/profile/ui/#/create)<br>
+2. Create the folder structure as following <br>
 <p align="left">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure1.png" alt="folder structure 1"/>
 </p>
@@ -21,18 +22,16 @@ This project mainly implements the Monotonic Optimal Bining(MOB) algorithm in `S
 <p align="left">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/sas%20folder%20structure2.png" alt="folder structure 2"/>
 </p>
-Note: we made some modifications to this file(german_data_credit_cat.csv) and detail as show below <br>
+Note: we had made some modifications to the dataset(german_data_credit_cat.csv). Details are shown below : <br>
 
-a.revise all column names <br>
-b.revise the value of CostMatrixRisk <br>
+1. Rename all columns <br>
+2. Change the value of column `Cost Matrix(Risk)` :
+ 
+|Types of Credit Risk | original value | Revised value|
+|:-------------------:|:--------------:|:------------:|
+|Good Risk            |1               |0             |
+|Bad  Risk            |2               |1             |
 
-* original value <br>
-  * 1 = Good Risk <br>
-  * 2 = Bad Risk <br>
-
-* revise value <br>
-  * 0 = Good Risk <br>
-  * 1 = Bad Risk <br>
 
 ### Step 3. Demo
 
@@ -310,3 +309,4 @@ The output of runing cleanBinsDetail macro. It shows the bins_summary and exclud
 1. Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
 2. Denny Chen(https://www.linkedin.com/in/dennychen-tahung/) <br>
 3. Thea Chan(yahui0219@gmail.com)<br>
+</div>
