@@ -305,4 +305,4 @@ The output of runing cleanBinsDetail macro. It shows the bins_summary and exclud
 # Authors
 1. Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
 2. Denny Chen(https://www.linkedin.com/in/dennychen-tahung/) <br>
-3. <br>
+3. Thea Chan(yahui0219@gmail.com)<br>
