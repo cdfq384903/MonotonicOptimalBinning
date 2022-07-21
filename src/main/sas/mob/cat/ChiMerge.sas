@@ -93,7 +93,7 @@
 		from &dataFrame. ;
 	QUIT ;
 	
-	%if 0 < &max_samples. <= 1 %then 
+	%if 0 < &max_samples. < 1 %then 
 		%do  ;
 			PROC SQL noprint ;
 				select count(*) * &max_samples. into :max_samples_size 
@@ -105,7 +105,7 @@
 			%let max_samples_size = &max_samples. ;
 		%end ;
 
-	%if 0 < &min_samples. <= 1 %then 
+	%if 0 < &min_samples. < 1 %then 
 		%do  ;
 			PROC SQL noprint ;
 				select count(*) * &min_samples. into :min_samples_size 
