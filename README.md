@@ -38,11 +38,7 @@ Note: we had made some modifications to the dataset(german_data_credit_cat.csv).
 
 ### Step 3. Usage Demo
 
-#### Numerical variable
-
-##### Size First Binning(SFB)
- 
-Run `MainSizeFirstBining.sas` script <br>
+Initialize  parameters:
  
  ``` .sas
  /*for init parameter*/
@@ -56,7 +52,15 @@ Run `MainSizeFirstBining.sas` script <br>
  %let show_woe_plot = 1;
  %let lib_name = TMPWOE;
  %let is_using_encoding_var = 1;
+```
 
+#### Numerical variable
+
+##### Size First Binning(SFB)
+ 
+Run `MainSizeFirstBining.sas` script <br>
+
+```.sas
  /*for SFB*/
  %let min_bins = 3;
  %let max_samples = %sysevalf(1000 * 0.4);
