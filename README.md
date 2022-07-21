@@ -333,18 +333,18 @@ The output of `%getIvPerVar()` macro. It shows the IV information for all discre
 ```
 
 #### Arguments
-1. **lib_name** <br>
+1. **`lib_name`** <br>
 Default: None <br>
 Suggestion: The library which will be assigned for the data to print WoE bar chart. <br>
 The `lib_name` argument defines the library used to store the data for plotting. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`, which means that the `%printWithoutCname()` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 
-2. **min_iv** <br>
+2. **`min_iv`** <br>
 Default: None <br>
 Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. <br>
 The `min_iv` argument defines the minimum threshold of information value. For example, in `MainMonotonicFirstBining.sas` script you can pass 0.1, which means the `%printWoeBarLineChart()` macro will show the woe bar chart of the varibale if its IV is greater than 0.1.
 
 #### Output
-The output of runing `%printWoeBarLineChart()` macro. It shows the woe bar chart of the variables whose IV is greater than `min_iv`.
+The output of runing `%printWoeBarLineChart()` macro. It shows the woe bar charts of the variables whose IV is greater than `min_iv`.
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/printWoeBarLineChart.png" alt=""/>
 </p>
@@ -357,12 +357,12 @@ The output of runing `%printWoeBarLineChart()` macro. It shows the woe bar chart
 ```
 
 #### Arguments
-1. **lib_name** <br>
+1. **`lib_name`** <br>
 Default: None <br>
 Suggestion: The library which is assigned to store the split rule exported by the macro. <br>
 The `lib_name` argument defines the library which is assigned to store the split rule exported by the macro. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`, which means that the `%printWithoutCname()` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 
-2. **output_file** <br>
+2. **`output_file`** <br>
 Default: None <br>
 Suggestion: The output file path which will be export split rule. <br>
 The `output_file` argument defines the output file path which will be export split rule. For example, in `MainMonotonicFirstBining.sas` script you can try `/home/u60021675/output/`, which means the `%exportSplitRule()` macro will export the split rule to "/home/u60021675/output/" directory. Note that you DON'T need to quote the direction.
