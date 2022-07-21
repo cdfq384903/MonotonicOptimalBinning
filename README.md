@@ -54,7 +54,7 @@ Initialize  parameters:
  %let is_using_encoding_var = 1;
 ```
 
-#### Numerical variable
+#### Numerical variables
 
 ##### Size First Binning(SFB)
  
@@ -72,7 +72,7 @@ Run `MainSizeFirstBining.sas` script <br>
  %initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7);
  %runMob();
  ```
-**RESULT OUTPUT:** <br> 
+**RESULT OUTPUT - `DurationInMonth`:** <br> 
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
@@ -80,10 +80,13 @@ Run `MainSizeFirstBining.sas` script <br>
 
 > Note: The image below shows the Woe Transformation Result of variable `DurationInMonth` with applying `SFB Algorithm`. It clearly presents the monotonicity of the WoE value. <br>
 
-Note: Undering SFB algorithm. The WoE transformation result of CreditAmount variable. It violates the monotonicity of WoE because SBF will preferentially terminate the merged result according to the limit of bins parameter.<br>
+**RESULT OUTPUT - `CreditAmount` :** <br> 
+
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v13.png" width="600" hight="600"/>
 </p>
+
+> Note: The image below shows the Woe Transformation Result of variable `CreditAmount` with applying `SFB Algorithm`. It violates the monotonicity of WoE because SBF will tend to meet the bins relevant restrictions as priority.<br>
 
 ##### Monotonic First Bining(MFB)
 Run MainMonotonicFirstBining.sas script <br>
