@@ -158,10 +158,10 @@ Macro Arguments Reference
 `MFB Algorithm` macro example:
 
 ```
- %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
-       show_woe_plot, is_using_encoding_var, lib_name); <br>
- %initMonotonicFirstBining();<br>
- %runMob();<br>
+%init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
+      show_woe_plot, is_using_encoding_var, lib_name); <br>
+%initMonotonicFirstBining();<br>
+%runMob();<br>
 ```
 
 `SFB Algorithm` macro example:
@@ -408,7 +408,7 @@ The output of runing `%cleanBinsDetail()` macro. It shows the bins_summary and e
 
 #### Arguments
 
-1. **dataFrame** <br>
+1. **`dataFrame`** <br>
 Default: None <br>
 Suggestion: a training data set. <br>
 The `dataFrame` argument defines the input data set. The datasets must includes all independent variables and the target variable (response variable). For example, in `MainChiMerge.sas` script you can pass `german_credit_card` as the given dataset which is a table structure created by `%readCsvFile()` macro.<br>
@@ -462,7 +462,7 @@ The `libName` argument defines the library which will be loaded and show IV summ
 
 1. The output files created by CMB algorithm.
 <p align="center">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/ChiMerge Output Files.png"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/ChiMerge%20Output%20files.png"/>
 </p>
 
 The final output of the woe binning result is stored in `woe_summary_<x>.sas7bdat`. Details are shown below: <br>
