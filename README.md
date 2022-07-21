@@ -159,8 +159,8 @@ Macro Arguments Reference
 
 ```
 %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
-      show_woe_plot, is_using_encoding_var, lib_name); <br>
-%initMonotonicFirstBining();<br>
+      show_woe_plot, is_using_encoding_var, lib_name);
+%initMonotonicFirstBining();
 %runMob();<br>
 ```
 
