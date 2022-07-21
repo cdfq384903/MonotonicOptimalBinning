@@ -8,7 +8,7 @@
 			%put - Too many unique values in Variable [&x.] --> &init_bins_check_status. ;
 			%goto end_merge_init_bins_cnt ;
 		%end ;	
-	%else  /* 開始合併WoE */
+	%else  /* 開始合併WoE */ 
 		%do ;
 			%Create_Grp_Summary(&dataFrame., &y., &x., &min_bins., &max_bins., &min_samples., &max_samples., &libName.) ;
 			%Get_Status(&libName., grp_summary_status) ;
