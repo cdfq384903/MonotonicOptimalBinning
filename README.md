@@ -146,7 +146,7 @@ Run `MainChiMerge.sas` script <br>
 **CMB OUTPUT RESULT :** <br>
 
 <p align="center">
-  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/ChiMerge_purpose_woesummary.png" width="600" hight="600"/>
+  <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/ChiMerge_purpose_woesummary.png"/>
 </p>
 
 The result of `CMB` is shown above. We can see that the `CMB Algorithm` merges the categorical variable `Purpose` in `german_credit_card` from `10` attributes to `6` groups.
