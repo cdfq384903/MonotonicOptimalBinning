@@ -144,69 +144,69 @@ Macro Arguments Reference
 ```
 
 #### Arguments
-1. `**data_table**` </br>
+1. **`data_table`** </br>
 Default: None </br>
 Suggestion: a training data set. </br>
 The `data_table` argument defines the input data set. The datasets must includes all independent variables and the target variable (response variable). For example, in `MainMonotonicFirstBining.sas` script you can pass `german_credit_card` as the given dataset which is a table structure created by `%readCsvFile` macro.</br>
 
-2. `**y**` </br>
+2. **`y`** </br>
 Default: None </br>
 Suggestion: The label name of response variable. </br>
 The `y` argument defines the column name of the response variable. For example, in `MainMonotonicFirstBining.sas` script you can pass `CostMatrixRisk` which exist in the dataset `german_credit_card`.
 
-3. `**x**` </br>
+3. **`x`** </br>
 Default: None </br>
 Suggestion: The column names of the variable for executing the alogorithm. </br>
 The `x` argument defines the column names of the chosen variables. Multiuple columns can be passed simultaneously. For example, in `MainMonotonicFirstBining.sas` script you can pass `AgeInYears` `CreditAmount` `DurationInMonth` which all exist in the dataset `german_credit_card`.
 
-4. `**exclude_condi**` </br>
+4. **`exclude_condi`** </br>
 Default: None </br>
 Suggestion: The condition given to exclude the observations in the variables. </br>
 The `exclude_condi` argument defines the conditiont to exclude the observations that meet the specified condition of the variables. For example, in `MainMonotonicFirstBining.sas` script you can pass `< -99999999`. It means that the algorithm will exclude the observations that the value of the variable is  `less then -99999999`.
 
-5. `**min_samples**` </br>
+5. **`min_samples`** </br>
 Default: None </br>
 Suggestion: The minimum sample amount that will be kept in each bin. Usually `min_samples` is suggested to be `5%`. </br>
 The `min_samples` argument defines the minimum sample that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `%sysevalf(1000 * 0.05)`. It means the minimum samples will be constrained by `5%` of total samples (1000 obs).
 
-6. `**min_bads**` </br>
+6. **`min_bads`** </br>
 Default: None </br>
 Suggestion: The minimum positive event amount (default/bad in risk analysis) that will be kept in each bin. Usually `min_bads` is suggested to be 1. </br>
 The `min_bads` argument defines the minimum positive event amount that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `10`, which means that the minimum bads will be constrained as a minimum of 10 positive events in each bins.
 
-7. **min_pvalue** </br>
+7. **`min_pvalue`** </br>
 Default: None </br>
 Suggestion: The minimum threshold of p value is the merge constraints when algorithm doing merge process between bins. Usually more higher minimum p value the algorithm will not merge between bins. </br>
-The min_pvalue argument defines the minimum threshold of p value. For eaxmple, in MainMonotonicFirstBining.sas script you can try 0.35. It means when algorithm doing the process of bins merge. The bin will be merge between i and i+1, if the test of statistic value(like z or chi) is higher than 0.35.
+The `min_pvalue` argument defines the minimum threshold of p value. For eaxmple, in MainMonotonicFirstBining.sas script you can try 0.35. It means when algorithm doing the process of bins merge. The bin will be merge between i and i+1, if the test of statistic value(like z or chi) is higher than 0.35.
 
-8. **show_woe_plot** </br>
+8. **`show_woe_plot`** </br>
 Default: None </br>
 Suggestion: The boolean(0, 1) of show woe plot result when doing mob algorithm. </br>
-The show_woe_plot argument defines the boolean(0, 1) of show woe plot result. For example, in MainMonotonicFirstBining.sas script you can try 1. It means when algorithm doing binning. It will show the woe result per each predictor variable.
+The `show_woe_plot` argument defines the boolean(0, 1) of show woe plot result. For example, in MainMonotonicFirstBining.sas script you can try 1. It means when algorithm doing binning. It will show the woe result per each predictor variable.
 
-9. **is_using_encoding_var** </br>
+9. **`is_using_encoding_var`** </br>
 Default: None </br>
 Suggestion: The boolean(0, 1) of using encoding var table. If your length of label name(x or y) is too long for sas macro, suggest you should open this parameter. </br>
-The is_using_encoding_var argument defines the boolean(0, 1) of using encoding var table. For example, in MainMonotonicFirstBining.sas script you can try 1. It means the attributes name of data will be changed to be encoding variable.
+The `is_using_encoding_var` argument defines the boolean(0, 1) of using encoding var table. For example, in MainMonotonicFirstBining.sas script you can try 1. It means the attributes name of data will be changed to be encoding variable.
 
-10. **lib_name** </br>
+10. **`lib_name`** </br>
 Default: None </br>
 Suggestion: The library name will be output. If you don't have any idea, you can try work. </br>
-The lib_name argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE(/home/u60021675/output) of WORK folder.
 
-11. **max_samples** </br>
+11. **`max_samples`** </br>
 Default: None </br>
-Suggestion: Only for initSizeFirstBining macro. The maximum sample will be keep per each bins. Usually maximum sample parameter suggest to be 40% of population. </br>
-The max_samples argument defines the sample wiil be keep per each bins. For example, in MainSizeFirstBining.sas script you can try %sysevalf(1000 * 0.4). It means the maximum samples will be constrain by 40% of population.
+Suggestion: Only for `initSizeFirstBining` macro. The maximum sample will be keep per each bins. Usually maximum sample parameter suggest to be 40% of population. </br>
+The `max_samples` argument defines the sample wiil be keep per each bins. For example, in MainSizeFirstBining.sas script you can try %sysevalf(1000 * 0.4). It means the maximum samples will be constrain by 40% of population.
 
-12. **min_bins** </br>
+12. **`min_bins`** </br>
 Default: None </br>
-Suggestion: Only for initSizeFirstBining macro. The minimum bins will be keep in binning process. </br>
+Suggestion: Only for `initSizeFirstBining` macro. The minimum bins will be keep in binning process. </br>
 The min_bins argument defines the minimum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 3. It means the minimum bins will constraine to be 3.
 
-13. **max_bins** </br>
+13. **`max_bins`** </br>
 Default: None </br>
-Suggestion: Only for initSizeFirstBining macro. The maximum bins will be keep in binning process. Note that max_bins must to be higher than min_bins.</br>
+Suggestion: Only for `initSizeFirstBining` macro. The maximum bins will be keep in binning process. Note that max_bins must to be higher than min_bins.</br>
 The max_bins argument defines the maximum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 7. It means the maximum bins will constraine to be 7.
 
 #### Output
@@ -225,10 +225,10 @@ The code below shows the execution of the printWithoutCname macro with recommend
 %printWithoutCname(lib_name); <br>
 
 #### Arguments
-1. **lib_name** </br>
+1. **`lib_name`** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and show woe summary result. </br>
-The lib_name argument defines the library which will be loaded and show woe summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWithoutCname macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the library which will be loaded and show woe summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWithoutCname macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 #### Output
 The output of runing printWithoutCname macro. It shows the result of all variable which was discretized.
@@ -241,50 +241,50 @@ The code below shows the execution of the getIvPerVar macro with recommended par
 %getIvPerVar(lib_name, min_iv, min_obs_rate, max_obs_rate, min_bin_size, max_bin_size, min_bad_count); <br>
 
 #### Arguments
-1. **lib_name** </br>
+1. **`lib_name`** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and show IV summary result. </br>
-The lib_name argument defines the library which will be loaded and show IV summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the getIvPerVar macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the library which will be loaded and show IV summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the getIvPerVar macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
-2. **min_iv** </br>
+2. **`min_iv`** </br>
 Default: None </br>
 Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. </br>
-The min_iv argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.1. It means the getIvPerVar macro will show IV pass result if IV higher than 0.1.
+The `min_iv` argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.1. It means the getIvPerVar macro will show IV pass result if IV higher than 0.1.
 
-3. **min_obs_rate** </br>
+3. **`min_obs_rate`** </br>
 Default: None </br>
 Suggestion: The minimum threshold of observation rate. Usually set at least 0.05. </br>
-The min_obs_rate argument defines minimum threshold of observation rate. For example, in MainMonotonicFirstBining.sas script you can try 0.05. It means the getIvPerVar macro will show observation rate pass result if value higher than 0.05 and lower than max_obs_rate.
+The `min_obs_rate` argument defines minimum threshold of observation rate. For example, in MainMonotonicFirstBining.sas script you can try 0.05. It means the getIvPerVar macro will show observation rate pass result if value higher than 0.05 and lower than max_obs_rate.
 
-4. **max_obs_rate** </br>
+4. **`max_obs_rate`** </br>
 Default: None </br>
 Suggestion: The maximum threshold of observation rate. Usually set around 0.8. </br>
-The max_obs_rate argument defines maximum threshold of observation rate. For example, in MainMonotonicFirstBining.sas script you can try 0.8. It means the getIvPerVar macro will show observation rate pass result if value lower than 0.8 and higher than min_obs_rate.
+The `max_obs_rate` argument defines maximum threshold of observation rate. For example, in MainMonotonicFirstBining.sas script you can try 0.8. It means the getIvPerVar macro will show observation rate pass result if value lower than 0.8 and higher than min_obs_rate.
 
-5. **min_bin_size** </br>
+5. **`min_bin_size`** </br>
 Default: None </br>
 Suggestion: The minimum threshold of bins size. Usually set at least 3. </br>
-The min_bin_size argument defines the minimum threshold of bins size. For example, in MainMonotonicFirstBining.sas script you can try 3. It means the getIvPerVar macro will show bins size pass result if value higher than 3 and lower than max_bin_size.
+The `min_bin_size` argument defines the minimum threshold of bins size. For example, in MainMonotonicFirstBining.sas script you can try 3. It means the getIvPerVar macro will show bins size pass result if value higher than 3 and lower than max_bin_size.
 
-6. **max_bin_size** </br>
+6. **`max_bin_size`** </br>
 Default: None </br>
 Suggestion: The maximum threshold of bins size. Usually set at least 10. </br>
-The max_bin_size argument defines the maximum threshold of bins size. For example, in MainMonotonicFirstBining.sas script you can try 10. It means the getIvPerVar macro will show bins size pass result if value lower than 10 and higher than min_bin_size.
+The `max_bin_size` argument defines the maximum threshold of bins size. For example, in MainMonotonicFirstBining.sas script you can try 10. It means the getIvPerVar macro will show bins size pass result if value lower than 10 and higher than min_bin_size.
 
-7. **min_bad_count** </br>
+7. **`min_bad_count`** </br>
 Default: None </br>
 Suggestion: The minimum threshold of bad count. Usually set at least 1. </br>
-The min_bad_count argument defines the minimum threshold of bad count. For example, in MainMonotonicFirstBining.sas script you can try 1. It means the getIvPerVar macro will show bad count result if value higher than 1 and higher than min_bad_count.
+The `min_bad_count` argument defines the minimum threshold of bad count. For example, in MainMonotonicFirstBining.sas script you can try 1. It means the getIvPerVar macro will show bad count result if value higher than 1 and higher than min_bad_count.
 
 #### Output
 The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are some additional notes.
-1. iv: the information value per each discretized variable.
-2. is_iv_pass: true(1) if IV higher than min_iv else than false(0).
-3. is_obs_pass: true(1) if observation rate between min_obs_rate and max_obs_rate else then false(0).
-4. is_bad_count_pass: true(1) if bad count higher than min_bad_count else then false(0).
-5. is_bin_pass: true(1) if bin size between min_bin_size and max_bin_size else then false(0).
-6. is_woe_pass: true(1) if the value of WoE have monotonicity properties else then false(0).
-7. woe_dir: asc if the WoE value have monotonically increasing, desc if the WoE value have monotonically decreasing else then null.
+1. `iv`: the information value per each discretized variable.
+2. `is_iv_pass`: true(1) if IV higher than min_iv else than false(0).
+3. `is_obs_pass`: true(1) if observation rate between min_obs_rate and max_obs_rate else then false(0).
+4. `is_bad_count_pass`: true(1) if bad count higher than min_bad_count else then false(0).
+5. `is_bin_pass`: true(1) if bin size between min_bin_size and max_bin_size else then false(0).
+6. `is_woe_pass`: true(1) if the value of WoE have monotonicity properties else then false(0).
+7. `woe_dir`: asc if the WoE value have monotonically increasing, desc if the WoE value have monotonically decreasing else then null.
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/getIvPerVar.png" alt=""/>
@@ -298,12 +298,12 @@ The code below shows the execution of the printWoeBarLineChart macro with recomm
 1. **lib_name** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and print WoE bar chart via IV summary. </br>
-The lib_name argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWoeBarLineChart macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWoeBarLineChart macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 2. **min_iv** </br>
 Default: None </br>
 Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. </br>
-The min_iv argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.001. It means the printWoeBarLineChart macro will show result if IV higher than 0.001.
+The `min_iv` argument defines the minimum threshold of information value. For example, in MainMonotonicFirstBining.sas script you can try 0.001. It means the printWoeBarLineChart macro will show result if IV higher than 0.001.
 
 #### Output
 The output of runing printWoeBarLineChart macro. It shows the variable of woe result under the min_iv constrain.
@@ -319,12 +319,12 @@ The code below shows the execution of the exportSplitRule macro with recommended
 1. **lib_name** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and export split rule. </br>
-The lib_name argument defines the library which will be loaded and export split rule. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the exportSplitRule macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the library which will be loaded and export split rule. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the exportSplitRule macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
 
 2. **output_file** </br>
 Default: None </br>
 Suggestion: The output file path which will be export split rule. </br>
-The output_file argument defines the output file path which will be export split rule. For example, in MainMonotonicFirstBining.sas script you can try /home/u60021675/output/. It means the exportSplitRule macro will export split rule on /home/u60021675/output/.
+The `output_file` argument defines the output file path which will be export split rule. For example, in MainMonotonicFirstBining.sas script you can try /home/u60021675/output/. It means the exportSplitRule macro will export split rule on /home/u60021675/output/.
 
 #### Output
 The output of runing exportSplitRule macro. It shows the binning split rule which was discretized.
@@ -340,13 +340,14 @@ The code below shows the execution of the cleanBinsDetail macro with recommended
 1. **bins_lib** </br>
 Default: None </br>
 Suggestion: The library which will be clear useless file. Suggest using the same value with %init macro.</br>
-The bins_lib argument defines the library which will be clear useless file. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means bins_summary and exclude file was be deleted on TMPWOE(/home/u60021675/output) of WORK folder.
+The `bins_lib` argument defines the library which will be clear useless file. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means bins_summary and exclude file was be deleted on TMPWOE(/home/u60021675/output) of WORK folder.
 
 #### Output
 The output of runing cleanBinsDetail macro. It shows the bins_summary and exclude file was be deleted.
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/cleanBinsDetail.png" alt=""/>
 </p>
+</div>
 
 ## Monotonic Optimal Bining algorithm flow chart
 
@@ -372,4 +373,4 @@ The output of runing cleanBinsDetail macro. It shows the bins_summary and exclud
 1. Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
 2. Denny Chen(https://www.linkedin.com/in/dennychen-tahung/) <br>
 3. Thea Chan(yahui0219@gmail.com)<br>
-</div>
+
