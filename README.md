@@ -147,32 +147,32 @@ Macro Arguments Reference
 1. `**data_table**` </br>
 Default: None </br>
 Suggestion: a training data set. </br>
-The `data_table` argument defines the input data set. The datasets must includes all predictors and the target variable (response variable). For example, in `MainMonotonicFirstBining.sas` script you can pass `german_credit_card` as the given dataset which is a table structure created by `%readCsvFile` macro.</br>
+The `data_table` argument defines the input data set. The datasets must includes all independent variables and the target variable (response variable). For example, in `MainMonotonicFirstBining.sas` script you can pass `german_credit_card` as the given dataset which is a table structure created by `%readCsvFile` macro.</br>
 
 2. `**y**` </br>
 Default: None </br>
 Suggestion: The label name of response variable. </br>
 The `y` argument defines the column name of the response variable. For example, in `MainMonotonicFirstBining.sas` script you can pass `CostMatrixRisk` which exist in the dataset `german_credit_card`.
 
-3. **x** </br>
+3. `**x**` </br>
 Default: None </br>
-Suggestion: The label names of predictor variable. </br>
-The x argument defines the label names of predictor variable. For example, in MainMonotonicFirstBining.sas script you can try AgeInYears CreditAmount DurationInMonth under the data of german_credit_card.
+Suggestion: The column names of the variable for executing the alogorithm. </br>
+The `x` argument defines the column names of the chosen variables. Multiuple columns can be passed simultaneously. For example, in `MainMonotonicFirstBining.sas` script you can pass `AgeInYears` `CreditAmount` `DurationInMonth` which all exist in the dataset `german_credit_card`.
 
-4. **exclude_condi** </br>
+4. `**exclude_condi**` </br>
 Default: None </br>
-Suggestion: The syntax of exclude condition per each predictor variable. </br>
-The exclude_condi argument defines the syntax of exclude condition per each predictor variable. For example, in MainMonotonicFirstBining.sas script you can try <-99999999. It means the algorithm will be excluded when the value of every predictor variable less then -99999999.
+Suggestion: The condition given to exclude the observations in the variables. </br>
+The `exclude_condi` argument defines the conditiont to exclude the observations that meet the specified condition of the variables. For example, in `MainMonotonicFirstBining.sas` script you can pass `< -99999999`. It means that the algorithm will exclude the observations that the value of the variable is  `less then -99999999`.
 
-5. **min_samples** </br>
+5. `**min_samples**` </br>
 Default: None </br>
-Suggestion: The minimum sample will be keep per each bins. Usually minimum sample parameter suggest to be 5% of population. </br>
-The min_samples argument defines the sample wiil be keep per each bins. For example, in MainMonotonicFirstBining.sas script you can try %sysevalf(1000 * 0.05). It means the minimum samples will be constrain by 5% of population.
+Suggestion: The minimum sample amount that will be kept in each bin. Usually `min_samples` is suggested to be `5%`. </br>
+The `min_samples` argument defines the minimum sample that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `%sysevalf(1000 * 0.05)`. It means the minimum samples will be constrained by `5%` of total samples (1000 obs).
 
-6. **min_bads** </br>
+6. `**min_bads**` </br>
 Default: None </br>
-Suggestion: The minimum bads will be keep per bins. Usually minimum bads parameter suggest to be 1. </br>
-The min_bads argument defines the bads will be keep per bins. For example, in MainMonotonicFirstBining.sas script you can try 10. It means the minimum bads will be constrain by 10.
+Suggestion: The minimum positive event amount (default/bad in risk analysis) that will be kept in each bin. Usually `min_bads` is suggested to be 1. </br>
+The `min_bads` argument defines the minimum positive event amount that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `10`, which means that the minimum bads will be constrained as a minimum of 10 positive events in each bins.
 
 7. **min_pvalue** </br>
 Default: None </br>
