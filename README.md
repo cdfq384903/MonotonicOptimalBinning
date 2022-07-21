@@ -250,11 +250,11 @@ The min_bad_count argument defines the minimum threshold of bad count. For examp
 The output of runing getIvPerVar macro. It shows the IV information for all discretized variable. There are some additional notes.
 1. iv: the information value per each discretized variable.
 2. is_iv_pass: true(1) if IV higher than min_iv else than false(0).
-3. is_obs_pass: true(1) if observation rate between min_obs_rate and max_obs_rate else than false(0).
-4. is_bad_count_pass: true(1) if bad count higher than min_bad_count else than false(0).
-5. is_bin_pass: true(1) if bin size between min_bin_size and max_bin_size else than false(0).
-6. is_woe_pass: true(1) if the value of WoE have monotonicity properties else than false(0).
-7. woe_dir: asc if the WoE value have monotonically increasing, desc if the WoE value have monotonically decreasing else than null.
+3. is_obs_pass: true(1) if observation rate between min_obs_rate and max_obs_rate else then false(0).
+4. is_bad_count_pass: true(1) if bad count higher than min_bad_count else then false(0).
+5. is_bin_pass: true(1) if bin size between min_bin_size and max_bin_size else then false(0).
+6. is_woe_pass: true(1) if the value of WoE have monotonicity properties else then false(0).
+7. woe_dir: asc if the WoE value have monotonically increasing, desc if the WoE value have monotonically decreasing else then null.
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/getIvPerVar.png" alt=""/>
