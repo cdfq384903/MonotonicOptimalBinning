@@ -41,7 +41,6 @@ Note: we had made some modifications to the dataset(german_data_credit_cat.csv).
 Initialize  parameters:
  
  ``` .sas
- /*for init parameter*/
  %let data_table = german_credit_card;
  %let y = CostMatrixRisk;
  %let x = AgeInYears CreditAmount DurationInMonth;
@@ -61,7 +60,6 @@ Initialize  parameters:
 Run `MainSizeFirstBining.sas` script <br>
 
 ```.sas
- /*for SFB*/
  %let min_bins = 3;
  %let max_samples = %sysevalf(1000 * 0.4);
 
@@ -78,7 +76,7 @@ Run `MainSizeFirstBining.sas` script <br>
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
 </p>
 
-> Note: The image below shows the Woe Transformation Result of variable `DurationInMonth` with applying `SFB Algorithm`. It clearly presents the monotonicity of the WoE value. <br>
+> Note: The image above shows the Woe Transformation Result of variable `DurationInMonth` with applying `SFB Algorithm`. It clearly presents the monotonicity of the WoE value. <br>
 
 **RESULT OUTPUT - `CreditAmount` :** <br> 
 
@@ -86,19 +84,36 @@ Run `MainSizeFirstBining.sas` script <br>
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v13.png" width="600" hight="600"/>
 </p>
 
-> Note: The image below shows the Woe Transformation Result of variable `CreditAmount` with applying `SFB Algorithm`. It violates the monotonicity of WoE because SBF will tend to meet the bins relevant restrictions as priority.<br>
+> Note: The image above shows the Woe Transformation Result of variable `CreditAmount` with applying `SFB Algorithm`. It violates the monotonicity of WoE because `SBF Algorithm` will tend to meet the bins relevant restrictions as priority.<br>
 
 ##### Monotonic First Bining(MFB)
-Run MainMonotonicFirstBining.sas script <br>
-Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth variable. It presents the monotonicity of WoE. <br>
+Run `MainMonotonicFirstBining.sas` script <br>
+
+```.sas
+%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
+      min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
+      show_woe_plot = &show_woe_plot.,
+      is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
+%initMonotonicFirstBining();
+%runMob();
+```
+
+**RESULT OUTPUT - `DurationInMonth`:** <br> 
+
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/MFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
 </p>
 
-Note: Undering MFB algorithm. The WoE transformation result of DurationInMonth variable. It presents the monotonicity of WoE, but it is likely to lead to issues such as excessive sample proportion and less number of bins size.<br>
+> Note: The image above shows the Woe Transformation Result of variable `DurationInMonth` with applying `MFB Algorithm`. It presents the monotonicity of WoE. <br>
+
+**RESULT OUTPUT - `CreditAmount` :** <br> 
+
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/MFB%20WoE%20Bar%20chart%20v13.png" width="600" hight="600"/>
 </p>
+
+> Note: The image above shows the Woe Transformation Result of variable `CreditAmount` with applying `MFB Algorithm`. It presents the monotonicity of WoE, but it is likely to lead to issues such as excessive sample proportion or an insufficient number of bins or bins size.<br>
+
 
 #### Categorical variable
 
