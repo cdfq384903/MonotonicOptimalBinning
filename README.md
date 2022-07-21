@@ -494,7 +494,7 @@ SAS Studio 3.8 with SAS 9.4
 3. [SAS OnDemand for Academics](https://www.sas.com/zh_tw/software/on-demand-for-academics.html). (2022). Retrieved 9 June 2022 <br>
 
 # Authors
-1. Darren Tsai(https://www.linkedin.com/in/yu-cheng-tsai-40137a117/) <br>
+1. Darren Tsai(https://www.linkedin.com/in/darren-yucheng-tsai/) <br>
 2. Denny Chen(https://www.linkedin.com/in/dennychen-tahung/) <br>
 3. Thea Chan(yahui0219@gmail.com)<br>
 
