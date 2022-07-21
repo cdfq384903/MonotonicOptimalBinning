@@ -144,15 +144,15 @@ Macro Arguments Reference
 ```
 
 #### Arguments
-1. **data_table** </br>
+1. `**data_table**` </br>
 Default: None </br>
 Suggestion: a training data set. </br>
-The data_table argument defines the input data set. This set includes all candidate predictor variables and the target variable. For example, in MainMonotonicFirstBining.sas script you can try german_credit_card which is the data table structure after implement %readCsvFile macro.</br>
+The `data_table` argument defines the input data set. The datasets must includes all predictors and the target variable (response variable). For example, in `MainMonotonicFirstBining.sas` script you can pass `german_credit_card` as the given dataset which is a table structure created by `%readCsvFile` macro.</br>
 
-2. **y** </br>
+2. `**y**` </br>
 Default: None </br>
 Suggestion: The label name of response variable. </br>
-The y argument defines the label name of response variable. For example, in MainMonotonicFirstBining.sas script you can try CostMatrixRisk under the data of german_credit_card.
+The `y` argument defines the column name of the response variable. For example, in `MainMonotonicFirstBining.sas` script you can pass `CostMatrixRisk` which exist in the dataset `german_credit_card`.
 
 3. **x** </br>
 Default: None </br>
