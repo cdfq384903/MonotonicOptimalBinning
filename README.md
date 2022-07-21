@@ -59,7 +59,7 @@ Initialize  parameters:
  
 Run `MainSizeFirstBining.sas` script <br>
 
-```.sas
+```
  %let min_bins = 3;
  %let max_samples = %sysevalf(1000 * 0.4);
 
@@ -70,7 +70,7 @@ Run `MainSizeFirstBining.sas` script <br>
  %initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7);
  %runMob();
  ```
-**`SFB` RESULT OUTPUT - `DurationInMonth`:** <br> 
+**SFB RESULT OUTPUT - `DurationInMonth`:** <br> 
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
@@ -78,7 +78,7 @@ Run `MainSizeFirstBining.sas` script <br>
 
 > Note: The image above shows the Woe Transformation Result of variable `DurationInMonth` with applying `SFB Algorithm`. It clearly presents the monotonicity of the WoE value. <br>
 
-**`SFB` RESULT OUTPUT - `CreditAmount` :** <br> 
+**SFB RESULT OUTPUT - `CreditAmount` :** <br> 
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/SFB%20WoE%20Bar%20chart%20v13.png" width="600" hight="600"/>
@@ -89,7 +89,7 @@ Run `MainSizeFirstBining.sas` script <br>
 ##### Monotonic First Bining(MFB)
 Run `MainMonotonicFirstBining.sas` script <br>
 
-```.sas
+```
 %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
       show_woe_plot = &show_woe_plot.,
@@ -98,7 +98,7 @@ Run `MainMonotonicFirstBining.sas` script <br>
 %runMob();
 ```
 
-**`MFB` RESULT OUTPUT - `DurationInMonth`:** <br> 
+**MFB RESULT OUTPUT - `DurationInMonth`:** <br> 
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/MFB%20WoE%20Bar%20chart%20v2.png" width="600" hight="600"/>
@@ -106,7 +106,7 @@ Run `MainMonotonicFirstBining.sas` script <br>
 
 > Note: The image above shows the Woe Transformation Result of variable `DurationInMonth` with applying `MFB Algorithm`. It presents the monotonicity of WoE. <br>
 
-**`MFB` RESULT OUTPUT - `CreditAmount` :** <br> 
+**MFB RESULT OUTPUT - `CreditAmount` :** <br> 
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/MFB%20WoE%20Bar%20chart%20v13.png" width="600" hight="600"/>
@@ -127,7 +127,7 @@ Macro Arguments Reference
 
 `MFB Algorithm` macro example:
 
-```.sas
+```
  %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
        show_woe_plot, is_using_encoding_var, lib_name); <br>
  %initMonotonicFirstBining();<br>
@@ -136,7 +136,7 @@ Macro Arguments Reference
 
 `SFB Algorithm` macro example:
 
-```.sas
+```
 %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
       show_woe_plot , is_using_encoding_var , lib_name );
 %initSizeFirstBining(max_samples , min_bins , max_bins); 
@@ -172,17 +172,17 @@ The `min_samples` argument defines the minimum sample that will be kept in each 
 6. **`min_bads`** </br>
 Default: None </br>
 Suggestion: The minimum positive event amount (default/bad in risk analysis) that will be kept in each bin. Usually `min_bads` is suggested to be 1. </br>
-The `min_bads` argument defines the minimum positive event amount that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `10`, which means that the minimum bads will be constrained as a minimum of 10 positive events in each bins.
+The `min_bads` argument defines the minimum positive event amount that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `10`, which means that the minimum bads will be constrained by a minimum of 10 positive events in each bins.
 
 7. **`min_pvalue`** </br>
 Default: None </br>
-Suggestion: The minimum threshold of p value is the merge constraints when algorithm doing merge process between bins. Usually more higher minimum p value the algorithm will not merge between bins. </br>
-The `min_pvalue` argument defines the minimum threshold of p value. For eaxmple, in MainMonotonicFirstBining.sas script you can try 0.35. It means when algorithm doing the process of bins merge. The bin will be merge between i and i+1, if the test of statistic value(like z or chi) is higher than 0.35.
+Suggestion: The minimum threshold of p-value for the algorithm to decide whether merge the two bins or not. Usually a higher `min_pvalue`, the algorithm will reduce the times of merging bins. </br>
+The `min_pvalue` argument defines the minimum threshold of p value. For eaxmple, in `MainMonotonicFirstBining.sas` script you can pass `0.35`. It means that the alogorithm will decide to merge the two bins if the p-value of the statistical test (may be Z or Chi) conducted between them is greater than `0.35`.
 
 8. **`show_woe_plot`** </br>
 Default: None </br>
-Suggestion: The boolean(0, 1) of show woe plot result when doing mob algorithm. </br>
-The `show_woe_plot` argument defines the boolean(0, 1) of show woe plot result. For example, in MainMonotonicFirstBining.sas script you can try 1. It means when algorithm doing binning. It will show the woe result per each predictor variable.
+Suggestion: Boolean(0, 1) : Whether showing the woe plot when MOB algorithm is running. </br>
+The `show_woe_plot` argument defines whether showing the woe plot in the algorithm process or not. For example, in `MainMonotonicFirstBining.sas` script you can pass `1`,which means that the SAS will show the woe plot result for each given `x`.
 
 9. **`is_using_encoding_var`** </br>
 Default: None </br>
@@ -191,44 +191,47 @@ The `is_using_encoding_var` argument defines the boolean(0, 1) of using encoding
 
 10. **`lib_name`** </br>
 Default: None </br>
-Suggestion: The library name will be output. If you don't have any idea, you can try work. </br>
-The `lib_name` argument defines the output library name will be stroed. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the output will be stored under the TMPWOE(/home/u60021675/output) of WORK folder.
+Suggestion: The library name to store the output tables. If no preference, please pass `work`, which means a temporary library in SAS. </br>
+The `lib_name` argument defines the output library name for storing tables created by the algorithm. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE` which are assigned by `LIBNAME TMPWOE "/home/u60021675/output"` under the given direction.
 
 11. **`max_samples`** </br>
 Default: None </br>
-Suggestion: Only for `initSizeFirstBining` macro. The maximum sample will be keep per each bins. Usually maximum sample parameter suggest to be 40% of population. </br>
-The `max_samples` argument defines the sample wiil be keep per each bins. For example, in MainSizeFirstBining.sas script you can try %sysevalf(1000 * 0.4). It means the maximum samples will be constrain by 40% of population.
+Suggestion: Only use in `initSizeFirstBining` macro. The maximum sample will be keep per each bins. Usually `max_sample` suggest to be 40% of population to avoid a serious concentration issue on WoE binning. </br>
+The `max_samples` argument defines the maximum sample amount that will be kept in each bin. For example, in `MainSizeFirstBining.sas` script you can pass with `%sysevalf(1000 * 0.4)`, which means the maximum samples will be constrained by a maximum limitation of observations which is 40% of population in each bins.
 
 12. **`min_bins`** </br>
 Default: None </br>
-Suggestion: Only for `initSizeFirstBining` macro. The minimum bins will be keep in binning process. </br>
-The min_bins argument defines the minimum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 3. It means the minimum bins will constraine to be 3.
+Suggestion: Only use in `initSizeFirstBining` macro. The minimum bins will be kept in the final woe summary output for each given `x`. </br>
+The `min_bins` argument defines the minimum bins amount that will be kept in the final woe summary output for each given `x`. For example, in `MainSizeFirstBining.sas` script you can pass `3`, which means the algorithm will create at least 3 bins for the given `x` in each.
 
 13. **`max_bins`** </br>
 Default: None </br>
-Suggestion: Only for `initSizeFirstBining` macro. The maximum bins will be keep in binning process. Note that max_bins must to be higher than min_bins.</br>
-The max_bins argument defines the maximum bins will be keep in binning process. For example, in MainSizeFirstBining.sas script you can try 7. It means the maximum bins will constraine to be 7.
+Suggestion: Only use in `initSizeFirstBining` macro. The maximum bins will be kept in the final woe summary output for each given `x`. Note that `max_bins` must be higher than `min_bins`.</br>
+The `max_bins` argument defines the maximum bins amount that will be kept in the final woe summary output for each given `x`.  For example, in `MainSizeFirstBining.sas` script you can pass `7`, which means the algorithm will create at most 7 bins for the given `x` in each.
 
 #### Output
-1. The output file after finished MOB algorithm.
+1. The output files created by MOB algorithm.
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/mob%20output%20result.jpg" alt=""/>
 </p>
 
-2. The woe summary result after finished MOB algorithm
+2. The woe summary result table created by MOB algorithm.
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/woe%20summary%20v2.png" alt=""/>
 </p>
 
 ### Print WoE result
 The code below shows the execution of the printWithoutCname macro with recommended parameters. <br>
-%printWithoutCname(lib_name); <br>
+
+```
+%printWithoutCname(lib_name);
+```
 
 #### Arguments
 1. **`lib_name`** </br>
 Default: None </br>
-Suggestion: The library which will be loaded and show woe summary result. </br>
-The `lib_name` argument defines the library which will be loaded and show woe summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWithoutCname macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+Suggestion: The library which will be assigned for storing the woe summary result. </br>
+The `lib_name` argument defines the library which will be assigned for storing woe summary result. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`,which means that the `printWithoutCname` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 
 #### Output
 The output of runing printWithoutCname macro. It shows the result of all variable which was discretized.
@@ -237,8 +240,11 @@ The output of runing printWithoutCname macro. It shows the result of all variabl
 </p>
 
 ### Generate the IV summary table
-The code below shows the execution of the getIvPerVar macro with recommended parameters. <br>
-%getIvPerVar(lib_name, min_iv, min_obs_rate, max_obs_rate, min_bin_size, max_bin_size, min_bad_count); <br>
+The code below shows the execution of the `getIvPerVar` macro with recommended parameters. <br>
+
+```
+%getIvPerVar(lib_name, min_iv, min_obs_rate, max_obs_rate, min_bin_size, max_bin_size, min_bad_count); 
+```
 
 #### Arguments
 1. **`lib_name`** </br>
@@ -292,7 +298,10 @@ The output of runing getIvPerVar macro. It shows the IV information for all disc
 
 ### Print WoE bar chart via IV summary filter
 The code below shows the execution of the printWoeBarLineChart macro with recommended parameters. <br>
-%printWoeBarLineChart(lib_name, min_iv); <br>
+
+```
+%printWoeBarLineChart(lib_name, min_iv);
+```
 
 #### Arguments
 1. **lib_name** </br>
@@ -313,7 +322,10 @@ The output of runing printWoeBarLineChart macro. It shows the variable of woe re
 
 ### Generate split rule
 The code below shows the execution of the exportSplitRule macro with recommended parameters. <br>
-1. %exportSplitRule(lib_name, output_file); <br>
+
+```
+%exportSplitRule(lib_name, output_file);
+```
 
 #### Arguments
 1. **lib_name** </br>
@@ -334,7 +346,10 @@ The output of runing exportSplitRule macro. It shows the binning split rule whic
 
 ### Clear useless data table
 The code below shows the execution of the cleanBinsDetail macro with recommended parameters. <br>
-%cleanBinsDetail(bins_lib); <br>
+
+```
+%cleanBinsDetail(bins_lib); 
+```
 
 #### Arguments
 1. **bins_lib** </br>
