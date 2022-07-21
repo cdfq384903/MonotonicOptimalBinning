@@ -161,7 +161,7 @@ Macro Arguments Reference
 %init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, 
       show_woe_plot, is_using_encoding_var, lib_name);
 %initMonotonicFirstBining();
-%runMob();<br>
+%runMob();
 ```
 
 `SFB Algorithm` macro example:
@@ -281,6 +281,7 @@ The output of runing `%printWithoutCname()` macro. It shows the result of all va
 Default: None <br>
 Suggestion: The library which will be assigned for storing the IV summary result. <br>
 The `lib_name` argument defines the library which will be assigned for storing the IV summary result. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`, which means that the `%printWithoutCname()` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
+
 2. **`min_iv`** <br>
 Default: None <br>
 Suggestion: The minimum threshold of information value (IV). Usually greater than 0.1. <br>
