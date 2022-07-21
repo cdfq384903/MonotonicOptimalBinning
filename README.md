@@ -38,8 +38,9 @@ Note: we had made some modifications to the dataset(german_data_credit_cat.csv).
 
 ### Step 3. Usage Demo
 
-Initialize  parameters:
- 
+#### Numerical variables
+
+Initialize  parameters: <br>
  ``` .sas
  %let data_table = german_credit_card;
  %let y = CostMatrixRisk;
@@ -52,8 +53,6 @@ Initialize  parameters:
  %let lib_name = TMPWOE;
  %let is_using_encoding_var = 1;
 ```
-
-#### Numerical variables
 
 ##### Size First Binning(SFB)
  
@@ -116,6 +115,33 @@ Run `MainMonotonicFirstBining.sas` script <br>
 
 
 #### Categorical variable
+
+Initialize  parameters: <br>
+ ``` .sas
+%let data_table = german_credit_card;
+%let y = CostMatrixRisk;
+%let x = Purpose;
+%let max_bins_threshold = 30 ;
+%let min_bins = 4 ;
+%let max_bins = 6 ;
+%let min_samples = 0.05 ;
+%let max_samples = 0.4 ;
+%let p_value_threshold = 0.35 ;
+%let libName = TMPWOE ;
+```
+
+##### Chi Merge Binning (CMB)
+
+Run `MainChiMerge.sas` script <br>
+
+```
+%RunChiMerge( dataFrame = german_credit_card, x = &x., y = &y., 
+              max_bins_threshold = &max_bins_threshold., 
+              min_bins = &min_bins., max_bins = &max_bins., 
+              min_samples = &min_samples., max_samples = &max_samples., 
+              p_value_threshold = &p_value_threshold., 
+              libName = &libName.) ;
+```
 
 <h1><p align = "center">
 Macro Arguments Reference
@@ -231,7 +257,7 @@ The code below shows the execution of the printWithoutCname macro with recommend
 1. **`lib_name`** </br>
 Default: None </br>
 Suggestion: The library which will be assigned for storing the woe summary result. </br>
-The `lib_name` argument defines the library which will be assigned for storing woe summary result. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`,which means that the `printWithoutCname` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
+The `lib_name` argument defines the library which will be assigned for storing woe summary result. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`, which means that the `printWithoutCname` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 
 #### Output
 The output of runing printWithoutCname macro. It shows the result of all variable which was discretized.
@@ -250,8 +276,7 @@ The code below shows the execution of the `getIvPerVar` macro with recommended p
 1. **`lib_name`** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and show IV summary result. </br>
-The `lib_name` argument defines the library which will be loaded and show IV summary result. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the getIvPerVar macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
-
+The `lib_name` argument defines the library which will be loaded and show IV summary result. For example, in MainMonotonicFirstBining.sas script you can pass `TMPWOE`, which means that the `printWithoutCname` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 2. **`min_iv`** </br>
 Default: None </br>
 Suggestion: The minimum threshold of information value. Usually set more higher than 0.1. </br>
@@ -307,7 +332,7 @@ The code below shows the execution of the printWoeBarLineChart macro with recomm
 1. **lib_name** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and print WoE bar chart via IV summary. </br>
-The `lib_name` argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the printWoeBarLineChart macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the library which will be loaded and print WoE bar chart via IV summary. For example, in MainMonotonicFirstBining.sas script you can pass `TMPWOE`, which means that the `%printWithoutCname()` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 
 2. **min_iv** </br>
 Default: None </br>
@@ -331,7 +356,7 @@ The code below shows the execution of the exportSplitRule macro with recommended
 1. **lib_name** </br>
 Default: None </br>
 Suggestion: The library which will be loaded and export split rule. </br>
-The `lib_name` argument defines the library which will be loaded and export split rule. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means the exportSplitRule macro will load the TMPWOE(/home/u60021675/output) of WORK folder.
+The `lib_name` argument defines the library which will be loaded and export split rule. For example, in MainMonotonicFirstBining.sas script you can pass `TMPWOE`, which means that the `%printWithoutCname()` macro will output the files and result table to `TMPWOE` library assigned by `LIBNAME TMPWOE(/home/u60021675/output) ;`.
 
 2. **output_file** </br>
 Default: None </br>
@@ -339,7 +364,7 @@ Suggestion: The output file path which will be export split rule. </br>
 The `output_file` argument defines the output file path which will be export split rule. For example, in MainMonotonicFirstBining.sas script you can try /home/u60021675/output/. It means the exportSplitRule macro will export split rule on /home/u60021675/output/.
 
 #### Output
-The output of runing exportSplitRule macro. It shows the binning split rule which was discretized.
+The output of `%exportSplitRule()` macro. It shows the binning split rule which was discretized.
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/exportSplitRule.jpg" alt=""/>
 </p>
@@ -352,10 +377,10 @@ The code below shows the execution of the cleanBinsDetail macro with recommended
 ```
 
 #### Arguments
-1. **bins_lib** </br>
+1. **`bins_lib`** </br>
 Default: None </br>
-Suggestion: The library which will be clear useless file. Suggest using the same value with %init macro.</br>
-The `bins_lib` argument defines the library which will be clear useless file. For example, in MainMonotonicFirstBining.sas script you can try TMPWOE. It means bins_summary and exclude file was be deleted on TMPWOE(/home/u60021675/output) of WORK folder.
+Suggestion: The library used to store files created from the algorithm process and will be cleared eventually. Suggest using the same value with `%init()` macro. </br>
+The `bins_lib` argument defines the library which will be clear useless file. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE`. It means bins_summary and exclude file was be deleted on TMPWOE(/home/u60021675/output) of WORK folder.
 
 #### Output
 The output of runing cleanBinsDetail macro. It shows the bins_summary and exclude file was be deleted.
@@ -377,10 +402,10 @@ The output of runing cleanBinsDetail macro. It shows the bins_summary and exclud
 </p>
 
 ## Enviroment
-1. SAS Studio 3.8 on SAS 9.4
+SAS Studio 3.8 with SAS 9.4
 
 # References
-1. German Credit Risk Analysis : Beginner's Guide . (2022). Retrieved 9 June 2022, from https://www.kaggle.com/code/pahulpreet/german-credit-risk-analysis-beginner-s-guide/notebook <br>
+1. German Credit Risk Analysis : Beginner's Guide . (2022). Retrieved 9 June 2022, from [Kaggle](https://www.kaggle.com/code/pahulpreet/german-credit-risk-analysis-beginner-s-guide/notebook) <br>
 2. Mironchyk, Pavel, and Viktor Tchistiakov. 2017. Monotone Optimal Binning Algorithm for Credit Risk Modeling. <br>
 3. SAS OnDemand for Academics. (2022). Retrieved 9 June 2022, from https://www.sas.com/zh_tw/software/on-demand-for-academics.html <br>
 

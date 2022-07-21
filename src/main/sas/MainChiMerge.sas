@@ -13,9 +13,17 @@ LIBNAME TMPWOE "/home/u60021675/output";
 %let data_table = german_credit_card;
 %let y = CostMatrixRisk;
 %let x = Purpose;
+%let max_bins_threshold = 30 ;
+%let min_bins = 4 ;
+%let max_bins = 6 ;
+%let min_samples = 0.05 ;
+%let max_samples = 0.4 ;
+%let p_value_threshold = 0.35 ;
+%let libName = TMPWOE ;
 
 %RunChiMerge(dataFrame = german_credit_card, x = &x., y = &y., 
-			 max_bins_threshold = 30, min_bins = 4, max_bins = 6, 
-			 min_samples = 0.05, max_samples = 0.4, 
-			 p_value_threshold = 0.35, 
-			 libName = TMPWOE) ;
+			 max_bins_threshold = &max_bins_threshold., 
+			 min_bins = &min_bins., max_bins = &max_bins., 
+			 min_samples = &min_samples., max_samples = &max_samples., 
+			 p_value_threshold = &p_value_threshold., 
+			 libName = &libName.) ;
