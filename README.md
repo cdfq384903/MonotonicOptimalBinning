@@ -143,7 +143,7 @@ Run `MainChiMerge.sas` script <br>
               libName = &libName.) ;
 ```
 
-**`CMB` OUTPUT RESULT :** <br>
+**CMB OUTPUT RESULT :** <br>
 
 <p align="center">
   <img src="https://github.com/cdfq384903/MonotonicOptimalBinning/blob/main/doc/snapshot/ChiMerge_purpose_woesummary.png" width="600" hight="600"/>
