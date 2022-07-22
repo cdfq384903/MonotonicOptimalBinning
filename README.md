@@ -207,7 +207,7 @@ The `min_bads` argument defines the minimum positive event amount that will be k
 7. **`min_pvalue`** <br>
 Default: None <br>
 Suggestion: The minimum threshold of p-value for the algorithm to decide whether merge the two bins or not. Usually a higher `min_pvalue`, the algorithm will reduce the times of merging bins. <br>
-The `min_pvalue` argument defines the minimum threshold of p value. For example, in `MainMonotonicFirstBining.sas` script you can pass 0.35, which means that the alogorithm will decide to merge the two bins if the p-value of the statistical test (Z-Test) conducted between them is greater than 0.35.
+The `min_pvalue` argument defines the minimum threshold of p value. For example, in `MainMonotonicFirstBining.sas` script you can pass 0.35, which means that the alogorithm will decide to merge the two bins if the p-value of the statistical test (Z-Test) conducted between them is greater than 0.35. The argument will iteratively decrease its value if there is no p-value of the statistical test (Z-Test) conducted between any two bins greater than the given parameter and the final bins amount is still greater than `max_bins`.
 
 8. **`show_woe_plot`** <br>
 Default: None <br>
