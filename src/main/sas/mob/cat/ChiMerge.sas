@@ -1,4 +1,4 @@
-%MACRO RunChiMerge(dataFrame, x, y, max_bins_threshold, min_bins, max_bins, min_samples, max_samples, p_value_threshold, libName) ;
+%MACRO runChiMerge(dataFrame, x, y, max_bins_threshold, min_bins, max_bins, min_samples, max_samples, p_value_threshold, libName) ;
 	%put ============================ Variable [&x.] : START ============================ ;
 	%Create_Status_Table(&libName.) ;
 	%Check_Init_Bins_Cnt(&dataFrame., &y., &x., &max_bins_threshold., &libName.) ;

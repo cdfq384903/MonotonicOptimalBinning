@@ -131,7 +131,7 @@ Chi Merge Binning (CMB) is an auto binning algorithm applying chi-squared test f
 Run `MainChiMerge.sas` script <br>
 
 ```
-%RunChiMerge( dataFrame = german_credit_card, x = &x., y = &y., 
+%runChiMerge( dataFrame = german_credit_card, x = &x., y = &y., 
               max_bins_threshold = &max_bins_threshold., 
               min_bins = &min_bins., max_bins = &max_bins., 
               min_samples = &min_samples., max_samples = &max_samples., 
@@ -399,7 +399,7 @@ The output of runing `%cleanBinsDetail()` macro. It shows the bins_summary and e
 `CMB Algorithm` macro example:
 
 ```
-%RunChiMerge( dataFrame = german_credit_card, x = &x., y = &y., 
+%runChiMerge( dataFrame = german_credit_card, x = &x., y = &y., 
               max_bins_threshold = &max_bins_threshold., 
               min_bins = &min_bins., max_bins = &max_bins., 
               min_samples = &min_samples., max_samples = &max_samples., 

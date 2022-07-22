@@ -21,7 +21,7 @@ LIBNAME TMPWOE "/home/u60021675/output";
 %let p_value_threshold = 0.35 ;
 %let libName = TMPWOE ;
 
-%RunChiMerge(dataFrame = german_credit_card, x = &x., y = &y., 
+%runChiMerge(dataFrame = german_credit_card, x = &x., y = &y., 
 			 max_bins_threshold = &max_bins_threshold., 
 			 min_bins = &min_bins., max_bins = &max_bins., 
 			 min_samples = &min_samples., max_samples = &max_samples., 
