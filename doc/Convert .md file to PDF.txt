@@ -1,0 +1,1 @@
+$ grip your_markdown.md --export your_markdown.html
