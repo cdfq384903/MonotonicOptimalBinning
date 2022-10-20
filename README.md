@@ -36,16 +36,17 @@ This project mainly implements the Monotonic Optimal Binning(MOB) algorithm in S
 
 Initialize  parameters: <br>
  ``` .sas
- %let data_table = german_credit_card;
- %let y = CostMatrixRisk;
- %let x = AgeInYears CreditAmount DurationInMonth;
- %let exclude_condi = < -99999999;
- %let min_samples = %sysevalf(1000 * 0.05);
- %let min_bads = 10;
- %let min_pvalue = 0.35;
- %let show_woe_plot = 1;
- %let lib_name = TMPWOE;
- %let is_using_encoding_var = 1;
+%let data_table = german_credit_card;
+%let y = CostMatrixRisk;
+%let x = AgeInYears CreditAmount DurationInMonth;
+%let exclude_condi = < -99999999;
+%let init_sign = auto ;
+%let min_samples = %sysevalf(1000 * 0.05);
+%let min_bads = 10;
+%let min_pvalue = 0.35;
+%let show_woe_plot = 1;
+%let lib_name = TMPWOE;
+%let is_using_encoding_var = 1;
 ```
 
 ##### Size First Binning(SFB)
@@ -56,12 +57,13 @@ Run `MainSizeFirstBining.sas` script <br>
  %let min_bins = 3;
  %let max_samples = %sysevalf(1000 * 0.4);
 
- %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
-       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
-       show_woe_plot = &show_woe_plot.,
-       is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
- %initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7);
- %runMob();
+PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
+%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., init_sign = &init_sign., 
+      min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
+      show_woe_plot = &show_woe_plot.,
+      is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
+%initSizeFirstBining(max_samples = &max_samples., min_bins = &min_bins., max_bins = 7);
+%runMob();
  ```
 **SFB RESULT OUTPUT - `DurationInMonth`:** <br> 
 
@@ -83,7 +85,8 @@ Run `MainSizeFirstBining.sas` script <br>
 Run `MainMonotonicFirstBining.sas` script <br>
 
 ```
-%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
+PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
+%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., init_sign = &init_sign.,
       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
       show_woe_plot = &show_woe_plot.,
       is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
@@ -194,47 +197,51 @@ Default: None <br>
 Suggestion: The condition given to exclude the observations in the variables. <br>
 The `exclude_condi` argument defines the conditiont to exclude the observations that meet the specified condition of the variables. For example, in `MainMonotonicFirstBining.sas` script you can pass `< -99999999`, which means that the algorithm will exclude the observations that the value of the variable is less then -99999999.
 
-5. **`min_samples`** <br>
+5. **`init_sign`** <br>
+Default: None <br>
+Suggestion: Set the `init_sign` as `auto` will automatically calculate the pearson correlation to determine the relation between the `x` and `y` variables. If the pearson correlation is greater than 0, then the program will take it as a positive relation, which means the greater `x` is, the higher defualt rate (higher mean of `y`) is.
+
+6. **`min_samples`** <br>
 Default: None <br>
 Suggestion: The minimum sample amount that will be kept in each bin. Usually `min_samples` is suggested to be 5% of the total population. <br>
 The `min_samples` argument defines the minimum sample that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass `%sysevalf(1000 * 0.05)`, which means the minimum samples will be constrained by 5% of total samples (1000 obs).
 
-6. **`min_bads`** <br>
+7. **`min_bads`** <br>
 Default: None <br>
 Suggestion: The minimum positive event amount (default/bad in risk analysis) that will be kept in each bin. Usually `min_bads` is suggested to be 1. <br>
 The `min_bads` argument defines the minimum positive event amount that will be kept in each bin. For example, in `MainMonotonicFirstBining.sas` script you can pass 10, which means that the minimum bads will be constrained by a minimum of 10 positive events in each bins.
 
-7. **`min_pvalue`** <br>
+8. **`min_pvalue`** <br>
 Default: None <br>
 Suggestion: The minimum threshold of p-value for the algorithm to decide whether merge the two bins or not. Usually a higher `min_pvalue`, the algorithm will reduce the times of merging bins. <br>
 The `min_pvalue` argument defines the minimum threshold of p value. For example, in `MainMonotonicFirstBining.sas` script you can pass 0.35, which means that the alogorithm will decide to merge the two bins if the p-value of the statistical test (Z-Test) conducted between them is greater than 0.35. The argument will iteratively decrease its value if there is no p-value of the statistical test (Z-Test) conducted between any two bins greater than the given parameter and the final bins amount is still greater than `max_bins`.
 
-8. **`show_woe_plot`** <br>
+9. **`show_woe_plot`** <br>
 Default: None <br>
 Suggestion: Boolean(0, 1) : Whether showing the woe plot when MOB algorithm is running. <br>
 The `show_woe_plot` argument defines whether showing the woe plot in the algorithm process or not. For example, in `MainMonotonicFirstBining.sas` script you can pass 1, which means that the SAS will show the woe plot result for each given `x`.
 
-9. **`is_using_encoding_var`** <br>
+10. **`is_using_encoding_var`** <br>
 Default: None <br>
 Suggestion: The boolean(0, 1) of using encoding var table. If your length of label name(x or y) is too long for sas macro, suggest you should open this parameter. <br>
 The `is_using_encoding_var` argument defines the boolean(0, 1) of using encoding var table. For example, in MainMonotonicFirstBining.sas script you can try 1, which means the attributes name of data will be changed to be encoding variable.
 
-10. **`lib_name`** <br>
+11. **`lib_name`** <br>
 Default: None <br>
 Suggestion: The library name to store the output tables. If no preference, please pass `work`, which means a temporary library in SAS. <br>
 The `lib_name` argument defines the output library name for storing tables created by the algorithm. For example, in `MainMonotonicFirstBining.sas` script you can pass `TMPWOE` which are assigned by `LIBNAME TMPWOE "/home/u60021675/output"` under the given direction.
 
-11. **`max_samples`** <br>
+12. **`max_samples`** <br>
 Default: None <br>
 Suggestion: Only use in `%initSizeFirstBining()` macro. The maximum sample will be kept in each bins. Usually `max_sample` suggest to be 40% of population to avoid a serious concentration issue on WoE binning. <br>
 The `max_samples` argument defines the maximum sample amount that will be kept in each bin. For example, in `MainSizeFirstBining.sas` script you can pass with `%sysevalf(1000 * 0.4)`, which means the maximum samples will be constrained by a maximum limitation of observations which is 40% of population in each bins.
 
-12. **`min_bins`** <br>
+13. **`min_bins`** <br>
 Default: None <br>
 Suggestion: Only use in `%initSizeFirstBining()` macro. The minimum bins will be kept in the final woe summary output for each given `x`. <br>
 The `min_bins` argument defines the minimum bins amount that will be kept in the final woe summary output for each given `x`. For example, in `MainSizeFirstBining.sas` script you can pass `3`, which means the algorithm will create at least 3 bins for the given `x` in each.
 
-13. **`max_bins`** <br>
+14. **`max_bins`** <br>
 Default: None <br>
 Suggestion: Only use in `%initSizeFirstBining()` macro. The maximum bins will be kept in the final woe summary output for each given `x`. Note that `max_bins` must be higher than `min_bins`.<br>
 The `max_bins` argument defines the maximum bins amount that will be kept in the final woe summary output for each given `x`.  For example, in `MainSizeFirstBining.sas` script you can pass `7`, which means the algorithm will create at most 7 bins for the given `x` in each.
