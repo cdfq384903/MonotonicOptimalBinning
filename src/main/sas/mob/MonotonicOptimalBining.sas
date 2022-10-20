@@ -11,22 +11,23 @@
 %global g_data_table g_y g_x g_exclude_condi g_lib_name g_min_bins g_min_samples 
         g_max_samples g_min_bads g_type g_min_pvalue g_show_woe_plot 
         g_nx g_is_using_encoding_var g_encoding_var g_optimal_p_value 
-        g_current_bin_size g_max_bins;
+        g_current_bin_size g_max_bins g_init_sign g_sign g_invalid_var;
 
 /*define constructor*/
-%MACRO init(data_table, y, x, exclude_condi, min_samples, min_bads, min_pvalue, show_woe_plot, is_using_encoding_var, lib_name);
+%MACRO init(data_table, y, x, exclude_condi, init_sign, min_samples, min_bads, min_pvalue, show_woe_plot, is_using_encoding_var, lib_name);
 	/*define data members*/
 	%let g_data_table = &data_table.;
 	%let g_y = &y.;
 	%let g_x = &x.;
 	%let g_exclude_condi = &exclude_condi.;
+	%let g_init_sign = &init_sign. ;
 	%let g_min_samples = &min_samples.;
 	%let g_min_bads = &min_bads.;
 	%let g_min_pvalue = &min_pvalue.;
 	%let g_show_woe_plot = &show_woe_plot.;
 	%let g_lib_name = &lib_name.;
 	%let g_nx = %sysfunc(countw(&x.));
-	%set_g_is_using_encoding_var();
+	%set_g_is_using_encoding_var(is_using_encoding_var = &is_using_encoding_var.);
 %MEND;
 
 %MACRO initSizeFirstBining(max_samples, min_bins, max_bins);
@@ -79,40 +80,40 @@
 				%put Variable exclude condition= [&var_exclude_condi.] ;
 
 				%set_g_invalid_var(data_table = &g_data_table., x = &var.);
-				%if &g_invalid_var. = 0 %then
+				%if %sysevalf(&g_invalid_var. = 0) %then
 					%do;
-							%createBinsSummaryBySfb(data_table = &g_data_table., y = &g_y., 
-			                                        x = &var., 
-						                            exclude_condi = &var_exclude_condi., 
-						                            min_bins = &g_min_bins., 
-			                                        max_samples = &g_max_samples., 
-						                            lib_name = &g_lib_name.);
-				            %runBinsMergeBySfb(x = &var., min_samples = &g_min_samples., 
-				                               min_bads = &g_min_bads., 
-			                                   min_pvalue = &g_min_pvalue., 
-				                               min_bins = &g_min_bins., 
-			                                   lib_name = &g_lib_name.);
+						%set_g_sign(init_given_sign = &g_init_sign., x = &var., y = &g_y.) ;
+						%createBinsSummaryBySfb(data_table = &g_data_table., y = &g_y., x = &var., 
+												exclude_condi = &var_exclude_condi., sign = &g_sign., 
+												min_bins = &g_min_bins., 
+												max_samples = &g_max_samples., 
+												lib_name = &g_lib_name.);
+						%runBinsMergeBySfb(x = &var., min_samples = &g_min_samples., 
+											min_bads = &g_min_bads., 
+											min_pvalue = &g_min_pvalue., 
+											min_bins = &g_min_bins., 
+											lib_name = &g_lib_name.);
 
-							%if &g_optimal_p_value. EQ 1 %then
-								%do;
-									/*optimal pvalue*/
-									%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
-									%do %while(&g_current_bin_size. > &g_max_bins.);
-										%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
-										%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue;
-							            %runBinsMergeBySfb(x = &var., 
-			                                               min_samples = &g_min_samples., 
-							                               min_bads = &g_min_bads., 
-			                                               min_pvalue = &g_min_pvalue., 
-							                               min_bins = &g_min_bins., 
-			                                               lib_name = &g_lib_name.);
-										%set_g_current_bin_size(x = &var., 
-			                                                    lib_name = &lib_name.);
-									%end;
-									%break_optimal_pvalue:
+						%if &g_optimal_p_value. EQ 1 %then
+							%do;
+								/*optimal pvalue*/
+								%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
+								%do %while(&g_current_bin_size. > &g_max_bins.);
+									%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
+									%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue_SFB;
+									%runBinsMergeBySfb(x = &var., 
+														min_samples = &g_min_samples., 
+														min_bads = &g_min_bads., 
+														min_pvalue = &g_min_pvalue., 
+														min_bins = &g_min_bins., 
+														lib_name = &g_lib_name.);
+									%set_g_current_bin_size(x = &var., 
+															lib_name = &lib_name.);
 								%end;
-							%createWoeSummary(x = &var., lib_name = &g_lib_name., 
-				                              show_plot = &g_show_woe_plot.);
+								%break_optimal_pvalue_SFB:
+							%end;
+						%createWoeSummary(x = &var., lib_name = &g_lib_name., 
+											show_plot = &g_show_woe_plot.);
 					%end;
 			%end;
 		%end;
@@ -122,7 +123,7 @@
 			%do k = 1 %to &g_nx.;
 				%let var = %scan(&g_x., &k, ' ');
 				%put Loop[ &k. ] : Variable = [&var.] ;
-
+				
 				%if &g_is_using_encoding_var. NE 0 %then 
 					%do;
 						%setGencodingVar(var_encoding_table = &g_lib_name..var_encoding_table, 
@@ -141,10 +142,12 @@
 				%put Variable exclude condition= [&var_exclude_condi.] ;
 
 				%set_g_invalid_var(data_table = &g_data_table., x = &var.);
-				%if &g_invalid_var. = 0 %then
+
+				%if %sysevalf(&g_invalid_var. = 0) %then
 					%do;
+						%set_g_sign(init_given_sign = &g_init_sign., x = &var., y = &g_y.) ;
 						%createBinsSummaryByMfb(data_table = &g_data_table., y = &g_y., x = &var., 
-					                            exclude_condi = &var_exclude_condi., 
+					                            exclude_condi = &var_exclude_condi., sign = &g_sign., 
 					                            lib_name = &g_lib_name.);
 					    %runBinsMergeByMfb(x = &var., min_samples = &g_min_samples., 
 		                                   min_bads = &g_min_bads., 
@@ -156,7 +159,7 @@
 								%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
 								%do %while(&g_current_bin_size. > &g_max_bins.);
 									%set_g_min_pvalue(min_pvalue = %sysevalf(&g_min_pvalue. - 0.03));
-									%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue;
+									%if %sysevalf(&g_min_pvalue. <= 0) %then %goto break_optimal_pvalue_MFB;
 									%runBinsMergeByMfb(x = &var., 
 		                                               min_samples = &g_min_samples., 
 					                                   min_bads = &g_min_bads., 
@@ -164,7 +167,7 @@
 		                                               lib_name = &g_lib_name.);						
 									%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
 								%end;
-								%break_optimal_pvalue:
+								%break_optimal_pvalue_MFB:
 							%end;
 						%createWoeSummary(x = &var., lib_name = &g_lib_name., 
 			                              show_plot = &g_show_woe_plot.);
@@ -184,10 +187,10 @@
 
 		SELECT COUNT(*) AS missing_count INTO : missing_count
            FROM &data_table.
-		 WHERE &x. IS MISSING;
+		 WHERE missing(&x.);
 	QUIT;
 
-	%let diff = %eval(&missing_count. - &total_record.);
+	%let diff = %sysevalf(&missing_count. - &total_record.);
 	%if %sysevalf(&diff. NE 0) %then
 		%do;
 			%let g_invalid_var = 0;
@@ -229,7 +232,7 @@
 		%end;
 %MEND;
 
-%MACRO set_g_is_using_encoding_var();
+%MACRO set_g_is_using_encoding_var(is_using_encoding_var);
 	%if &is_using_encoding_var NE 0 %then
 		%do;
 			%let g_is_using_encoding_var = 1;
@@ -246,6 +249,36 @@
 	%put g_min_pvalue = &g_min_pvalue.;
 %MEND;
 
+%MACRO set_g_sign(init_given_sign, x, y)  ;
+	%if %sysfunc(lowcase("&init_given_sign")) = "auto" %then 
+		%do ;
+			PROC CORR data = &g_data_table. outp = corrOut(where = (_TYPE_ = "CORR")) noprint ;
+				var &x. &y. ;
+			RUN ;
+			PROC SQL noprint ;
+				select &y. into :corrSign
+				from corrOut 
+				where _NAME_ = "&x." ;
+			QUIT ;
+			%if %sysevalf(&corrSign. >= 0) %then 
+				%do ;
+					%let g_sign = GE ;
+				%end ;
+			%else
+				%do ;
+					%let g_sign = LE ;
+				%end;
+		%end ; 
+	%else %if %sysfunc(lowcase("&init_given_sign")) = "+" %then 
+		%do ;
+			%let g_sign = GE ;
+		%end ;
+	%else 
+		%do ;
+			%let g_sign = LE ;
+		%end ;
+%MEND ;
+
 %MACRO createTmpTable();
 	DATA tmp_tbl ;
 	LENGTH id $255.; 
@@ -261,7 +294,7 @@
 	PROC SQL NOPRINT;
 	SELECT new_var INTO :new_var
 	  FROM &var_encoding_table.
-	 WHERE old_var = "&old_var.";
+	 WHERE lowcase(old_var) = lowcase("&old_var.");
 	QUIT;
 
 	%let g_encoding_var = &new_var.;

@@ -1,6 +1,3 @@
-/*load libs*/
-%INCLUDE "/home/u60021675/src/main/sas/handler/FileHandler.sas" ;
-
 /*
 根據optimal出來的結果計算woe/iv
 	x:<string> 解釋變數名稱

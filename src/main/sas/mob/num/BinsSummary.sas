@@ -10,7 +10,7 @@
 	lib_name:<string> 存放woe檔案資料夾的目錄名稱
 	return void
 */
-%MACRO createBinsSummaryBySfb(data_table, y, x, exclude_condi, min_bins, max_samples, lib_name);
+%MACRO createBinsSummaryBySfb(data_table, y, x, exclude_condi, sign, min_bins, max_samples, lib_name);
 	%if &exclude_condi. = 0 %then
 		%do;
 			DATA work.data_table_sub work.data_table_exclude_sub;
@@ -87,9 +87,9 @@
              WHERE idx = &j.;
 			QUIT;
 			
-			%if &mean_j. < &mean_i. %then
+			%if &mean_i. &sign. &mean_j. %then
 				%do;
-				%let i = %eval(&i.+1);
+					%let i = %eval(&i.+1);
 				%end;
 			%else
 				%do;
@@ -189,7 +189,7 @@
 	lib_name:<string> 存放woe檔案資料夾的目錄名稱
 	return void
 */
-%MACRO createBinsSummaryByMfb(data_table, y, x, exclude_condi, lib_name);
+%MACRO createBinsSummaryByMfb(data_table, y, x, exclude_condi, sign, lib_name);
 	%if &exclude_condi. = 0 %then
 		%do;
 			DATA work.data_table_sub work.data_table_exclude_sub;
@@ -253,7 +253,7 @@
 		QUIT;
 
 		%do %while(1);
-			%let j = %eval(&i.+1) ;
+			%let j = %eval(&i.+1) ; /* j : next id */
 
 			%if &j. >= &record_size. %then %goto finished_bin_i_check;
 			
@@ -266,7 +266,7 @@
              WHERE idx = &j.;
 			QUIT;
 			
-			%if &mean_j. < &mean_i. %then
+			%if &mean_i. &sign. &mean_j. %then
 				%do;
 				%let i = %eval(&i.+1);
 				%end;

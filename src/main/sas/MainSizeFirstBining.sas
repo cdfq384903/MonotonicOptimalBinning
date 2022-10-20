@@ -11,9 +11,10 @@ LIBNAME TMPWOE "/home/u60021675/output";
 
 /*for init parameter*/
 %let data_table = german_credit_card;
-%let y = CostMatrixRisk;
-%let x = AgeInYears CreditAmount DurationInMonth;
+%let y = default;
+%let x = Age Creditamount Durationinmonth;
 %let exclude_condi = < -99999999;
+%let init_sign = auto ;
 %let min_samples = %sysevalf(1000 * 0.05);
 %let min_bads = 10;
 %let min_pvalue = 0.35;
@@ -25,7 +26,8 @@ LIBNAME TMPWOE "/home/u60021675/output";
 %let min_bins = 3;
 %let max_samples = %sysevalf(1000 * 0.4);
 
-%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., 
+PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
+%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., init_sign = &init_sign., 
       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
       show_woe_plot = &show_woe_plot.,
       is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);
