@@ -1,11 +1,10 @@
 /*load libs*/
-%INCLUDE "/home/u60021675/src/main/sas/mob/num/BinsMerge.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/mob/cat/ChiMerge.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/mob/num/BinsSummary.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/mob/tool/WoeSummary.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/mob/tool/WoeHandler.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/mob/tool/IvSummary.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/handler/FileHandler.sas";
+%INCLUDE "/home/u60021700/mob/src/main/mob/num/BinsMerge.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/sas/mob/cat/ChiMerge.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/mob/num/BinsSummary.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/mob/tool/WoeSummary.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/mob/tool/WoeHandler.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/mob/tool/IvSummary.sas" ;
 
 /*define global data members*/
 %global g_data_table g_y g_x g_exclude_condi g_lib_name g_min_bins g_min_samples 
@@ -64,8 +63,7 @@
 
 				%if &g_is_using_encoding_var. NE 0 %then 
 					%do;
-						%setGencodingVar(var_encoding_table = &g_lib_name..var_encoding_table, 
-                                         old_var = &var.);
+						%setGencodingVar(var_encoding_table = &g_lib_name..var_encoding_table, old_var = &var.);
 						%let var = &g_encoding_var.;
 					%end;
 
@@ -76,8 +74,9 @@
 				%else
 					%do;
 						%let var_exclude_condi = &g_exclude_condi.;
+						%put Variable exclude condition= [&var_exclude_condi.] ;
 					%end;
-				%put Variable exclude condition= [&var_exclude_condi.] ;
+					
 
 				%set_g_invalid_var(data_table = &g_data_table., x = &var.);
 				%if %sysevalf(&g_invalid_var. = 0) %then
@@ -112,8 +111,7 @@
 								%end;
 								%break_optimal_pvalue_SFB:
 							%end;
-						%createWoeSummary(x = &var., lib_name = &g_lib_name., 
-											show_plot = &g_show_woe_plot.);
+						%createWoeSummary(x = &var., lib_name = &g_lib_name., show_plot = &g_show_woe_plot.);
 					%end;
 			%end;
 		%end;
@@ -138,8 +136,9 @@
 				%else
 					%do;
 						%let var_exclude_condi = &g_exclude_condi.;
+						%put Variable exclude condition= [&var_exclude_condi.] ;
 					%end;
-				%put Variable exclude condition= [&var_exclude_condi.] ;
+				
 
 				%set_g_invalid_var(data_table = &g_data_table., x = &var.);
 
@@ -174,20 +173,22 @@
 					%end;
 			%end;
 		%end;
-
-	%reverseEncodingVar(var_encoding_table = &g_lib_name..var_encoding_table, 
-                        g_data_table = &g_data_table.);
+	%if &g_is_using_encoding_var. = 1 %then 
+		%do ;
+			%reverseEncodingVar(var_encoding_table = &g_lib_name..var_encoding_table, 
+                        		g_data_table = &g_data_table.);
+		%end ;
 %MEND;
 
 /*======================= for priviate method =======================*/
 %MACRO set_g_invalid_var(data_table, x);
 	PROC SQL NOPRINT;
 		SELECT COUNT(*) AS total_record INTO : total_record
-           FROM &data_table.;
+        FROM &data_table.;
 
 		SELECT COUNT(*) AS missing_count INTO : missing_count
-           FROM &data_table.
-		 WHERE missing(&x.);
+        FROM &data_table.
+		WHERE missing(&x.);
 	QUIT;
 
 	%let diff = %sysevalf(&missing_count. - &total_record.);
@@ -215,10 +216,10 @@
 %MACRO set_g_current_bin_size(x, lib_name);
 	PROC SQL NOPRINT;
 		SELECT COUNT(*) AS bins INTO : current_bins
-          FROM &lib_name..bins_summary_pvalue_&x.;
+        FROM &lib_name..bins_summary_pvalue_&x.;
 	QUIT;
 	%let g_current_bin_size = &current_bins.;
-	%put g_current_bin_size = &g_current_bin_size.;
+/* 	%put g_current_bin_size = &g_current_bin_size.; */
 %MEND;
 
 %MACRO set_g_optimal_p_value(max_bins);
@@ -246,7 +247,7 @@
 
 %MACRO set_g_min_pvalue(min_pvalue);
 	%let g_min_pvalue = &min_pvalue.;
-	%put g_min_pvalue = &g_min_pvalue.;
+/* 	%put g_min_pvalue = &g_min_pvalue.; */
 %MEND;
 
 %MACRO set_g_sign(init_given_sign, x, y)  ;
@@ -260,22 +261,23 @@
 				from corrOut 
 				where _NAME_ = "&x." ;
 			QUIT ;
+
 			%if %sysevalf(&corrSign. >= 0) %then 
 				%do ;
-					%let g_sign = GE ;
+					%let g_sign = GT ;
 				%end ;
 			%else
 				%do ;
-					%let g_sign = LE ;
+					%let g_sign = LT ;
 				%end;
 		%end ; 
 	%else %if %sysfunc(lowcase("&init_given_sign")) = "+" %then 
 		%do ;
-			%let g_sign = GE ;
+			%let g_sign = GT ;
 		%end ;
 	%else 
 		%do ;
-			%let g_sign = LE ;
+			%let g_sign = LT ;
 		%end ;
 %MEND ;
 
@@ -298,7 +300,7 @@
 	QUIT;
 
 	%let g_encoding_var = &new_var.;
-	%put g_encoding_var = &g_encoding_var.;
+/* 	%put g_encoding_var = &g_encoding_var.; */
 %MEND;
 
 %MACRO createVarEncodingTable(g_x, g_lib_name);
@@ -324,10 +326,9 @@
 
 	%do k = 1 %to &total_cols.;
 		%let var = %scan(&all_cols., &k., ' ');	
-		%put var = &var.;
 
 		%let new_var = %sysfunc(cats(v, &k.));
-		%put new_var = &new_var.;
+		%put [&var.] -> [&new_var.];
 	
 		PROC SQL NOPRINT ;
 			SELECT CATS("&var.", "=", "&new_var.") INTO :rename_syntax 
@@ -376,3 +377,7 @@
 	PROC DELETE DATA=tmp_tbl;
 	RUN;
 %MEND;
+
+
+
+

@@ -1,22 +1,32 @@
 options nonotes;
-* options mprint; /*open it if you want to debug code*/
+* options mprint mprintnest; /*open it if you want to debug code*/
 
-%INCLUDE "/home/u60021675/src/main/sas/handler/FileHandler.sas" ;
-%INCLUDE "/home/u60021675/src/main/sas/mob/MonotonicOptimalBining.sas" ;
-LIBNAME TMPWOE "/home/u60021675/output";
+%INCLUDE "/home/u60021700/mob/src/main/handler/FileHandler.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/mob/MonotonicOptimalBining.sas" ;
+LIBNAME TMPWOE "/home/u60021700/mob/output";
 
 /*-----------------------------for testing case-----------------------------*/
-%readCsvFile(inputFileAbsPath = "/home/u60021675/data/german_data_credit_cat.csv", 
+%readCsvFile(inputFileAbsPath = "/home/u60021700/sasuser.v94/data/german_data_credit_cat.csv", 
              encoding = "ascii", outputFileAbsPath = work.german_credit_card);
+
+DATA work.german_credit_card ;
+	set work.german_credit_card ;
+	new = default - 1 ;
+	drop default ;
+	rename new = default ;
+RUN ;
+
+PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
 
 /*for init parameter*/
 %let data_table = german_credit_card;
 %let y = default;
-%let x = Age Creditamount Durationinmonth;
-%let exclude_condi = < -99999999;
+/*  Age Creditamount durationinmonth existingcredits Installmentrate presentresidence numberofpeople */
+%let x =Age Creditamount durationinmonth existingcredits Installmentrate presentresidence numberofpeople;
+%let exclude_condi = <= -99999999;
 %let init_sign = auto ;
-%let min_samples = %sysevalf(1000 * 0.05);
-%let min_bads = 10;
+%let min_samples = %sysevalf(1000 * 0.05); /* <<<<<  1000 means the rows of the dataset */
+%let min_bads = 1;
 %let min_pvalue = 0.35;
 %let show_woe_plot = 1;
 %let lib_name = TMPWOE;
@@ -24,9 +34,8 @@ LIBNAME TMPWOE "/home/u60021675/output";
 
 /*for SFB*/
 %let min_bins = 3;
-%let max_samples = %sysevalf(1000 * 0.4);
+%let max_samples = %sysevalf(1000 * 0.4); /* <<<<<  1000 means the rows of the dataset */
 
-PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
 %init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., init_sign = &init_sign., 
       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
       show_woe_plot = &show_woe_plot.,

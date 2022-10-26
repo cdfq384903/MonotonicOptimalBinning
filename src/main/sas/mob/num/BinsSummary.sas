@@ -37,18 +37,21 @@
 	/*	calculate group statistic*/
 	PROC SQL NOPRINT;
 	/*	for sub dataset*/
-	CREATE TABLE work.init_summary AS
-	SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
-	  FROM work.data_table_sub
-	 GROUP BY &x. ORDER BY &x. DESC;
-	SELECT COUNT(*) INTO :bins_size_org
-      FROM work.init_summary;
+		CREATE TABLE work.init_summary AS
+		SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
+	  	FROM work.data_table_sub
+	 	GROUP BY &x. 
+	 	ORDER BY &x. DESC;
+		
+		SELECT COUNT(*) INTO :bins_size_org
+      	FROM work.init_summary;
 
 	/*	for exclude sub dataset*/
-	CREATE TABLE work.init_summary_exclude AS
-	SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
-	  FROM work.data_table_exclude_sub
-	 GROUP BY &x. ORDER BY &x. DESC;
+		CREATE TABLE work.init_summary_exclude AS
+		SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
+	  	FROM work.data_table_exclude_sub
+	 	GROUP BY &x. 
+	 	ORDER BY &x. DESC;
 	QUIT;
 
 	DATA &lib_name..bins_summary_&x.;
@@ -87,7 +90,12 @@
              WHERE idx = &j.;
 			QUIT;
 			
-			%if &mean_i. &sign. &mean_j. %then
+			%if &mean_i. &sign. &mean_j. %then 
+			/* 
+				if g_sign = + then sign = GT
+				since descending sorted -> if j (next smaller group) > i (curr greater group) then merge
+				else if j < i then continue next loop
+			*/
 				%do;
 					%let i = %eval(&i.+1);
 				%end;
@@ -99,24 +107,13 @@
 						%if &bins_size_est. < &min_bins. %then %goto finished_bin_i_check;
 
 						PROC SQL NOPRINT;
-						SELECT nsamples INTO :nsamples_i
+						SELECT nsamples,means, std_dev INTO :nsamples_i, :nmeans_i, :nstd_i
 						  FROM &lib_name..bins_summary_&x.
 			             WHERE idx = &i.;
-						SELECT nsamples INTO :nsamples_j
+						SELECT nsamples,means, std_dev INTO :nsamples_j, :nmeans_j, :nstd_j
 						  FROM &lib_name..bins_summary_&x.
 			             WHERE idx = &j.;
-						SELECT means INTO :nmeans_i
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &i.;
-						SELECT means INTO :nmeans_j
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &j.;
-						SELECT std_dev INTO :nstd_i
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &i.;
-						SELECT std_dev INTO :nstd_j
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &j.;
+					
 						QUIT;  
 						%let group_samples = %sysevalf(&nsamples_j. + &nsamples_i);
 						%let group_means = %sysevalf((%sysevalf(&nsamples_j. * &nmeans_j.) + %sysevalf(&nsamples_i. * &nmeans_i.)) / &group_samples.);
@@ -132,10 +129,13 @@
 						%if &group_samples. >= &max_samples. %then %goto group_sample_overflow;
 
 						PROC SQL NOPRINT;
-						UPDATE &lib_name..bins_summary_&x. SET nsamples = &group_samples. WHERE idx = &i.;
-						UPDATE &lib_name..bins_summary_&x. SET means = &group_means. WHERE idx = &i.;
-						UPDATE &lib_name..bins_summary_&x. SET std_dev = &group_std. WHERE idx = &i.;
-						UPDATE &lib_name..bins_summary_&x. SET del_flg = 1 WHERE idx = &j.;
+							UPDATE &lib_name..bins_summary_&x. 
+								SET 
+									nsamples = &group_samples.,
+									means = &group_means.,
+									std_dev = &group_std.
+							WHERE idx = &i.;
+							UPDATE &lib_name..bins_summary_&x. SET del_flg = 1 WHERE idx = &j.;
 						QUIT;
 						%let j = %eval(&j.+1);
 						
@@ -150,7 +150,7 @@
 			             WHERE idx = &j.;
 						QUIT;
 
-						%if &tmpmean_j. < &tmpmean_i. %then 
+						%if &tmpmean_i. &sign. &tmpmean_j. %then 
 							%group_sample_overflow:
 							%do;
 								%let i = &j.;
@@ -167,7 +167,7 @@
 		SELECT SUM(del_flg) into :dels 
 		  FROM &lib_name..bins_summary_&x.;
 		QUIT;
-		%put dels = &dels.;
+/* 		%put dels = &dels.; */
 
 		%if &dels. = 0 %then %goto finished_bin;
 	%end;
@@ -216,18 +216,21 @@
 	/*	calculate group statistic*/
 	PROC SQL NOPRINT;
 	/*	for sub dataset*/
-	CREATE TABLE work.init_summary AS
-	SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
-	  FROM work.data_table_sub
-	 GROUP BY &x. ORDER BY &x. DESC;
-	SELECT COUNT(*) INTO :bins_size_org
-      FROM work.init_summary;
+		CREATE TABLE work.init_summary AS
+		SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
+	  	FROM work.data_table_sub
+	 	GROUP BY &x. 
+	 	ORDER BY &x. DESC;
+		
+		SELECT COUNT(*) INTO :bins_size_org
+      	FROM work.init_summary;
 
 	/*	for exclude sub dataset*/
-	CREATE TABLE work.init_summary_exclude AS
-	SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
-	  FROM work.data_table_exclude_sub
-	 GROUP BY &x. ORDER BY &x. DESC;
+		CREATE TABLE work.init_summary_exclude AS
+		SELECT &x., AVG(&y.) AS means, COUNT(*) AS nsamples, STD(&y.) AS std_dev, 0 AS del_flg
+	  	FROM work.data_table_exclude_sub
+	 	GROUP BY &x. 
+	 	ORDER BY &x. DESC;
 	QUIT;
 
 	DATA &lib_name..bins_summary_&x.;
@@ -266,9 +269,9 @@
              WHERE idx = &j.;
 			QUIT;
 			
-			%if &mean_i. &sign. &mean_j. %then
+			%if &mean_i. &sign. &mean_j. %then 
 				%do;
-				%let i = %eval(&i.+1);
+					%let i = %eval(&i.+1);
 				%end;
 			%else
 				%do;
@@ -277,24 +280,12 @@
 						%let bins_size_est = %eval(&bins_size_org. - &del_count.);
 
 						PROC SQL NOPRINT;
-						SELECT nsamples INTO :nsamples_i
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &i.;
-						SELECT nsamples INTO :nsamples_j
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &j.;
-						SELECT means INTO :nmeans_i
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &i.;
-						SELECT means INTO :nmeans_j
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &j.;
-						SELECT std_dev INTO :nstd_i
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &i.;
-						SELECT std_dev INTO :nstd_j
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &j.;
+							SELECT nsamples, means, std_dev INTO :nsamples_i, :nmeans_i, :nstd_i
+						  	FROM &lib_name..bins_summary_&x.
+			             	WHERE idx = &i.;
+							SELECT nsamples, means, std_dev INTO :nsamples_j, :nmeans_j, :nstd_j
+						  	FROM &lib_name..bins_summary_&x.
+			             	WHERE idx = &j.;
 						QUIT;  
 						%let group_samples = %sysevalf(&nsamples_j. + &nsamples_i);
 						%let group_means = %sysevalf((%sysevalf(&nsamples_j. * &nmeans_j.) + %sysevalf(&nsamples_i. * &nmeans_i.)) / &group_samples.);
@@ -309,25 +300,28 @@
 							%end;
 
 						PROC SQL NOPRINT;
-						UPDATE &lib_name..bins_summary_&x. SET nsamples = &group_samples. WHERE idx = &i.;
-						UPDATE &lib_name..bins_summary_&x. SET means = &group_means. WHERE idx = &i.;
-						UPDATE &lib_name..bins_summary_&x. SET std_dev = &group_std. WHERE idx = &i.;
-						UPDATE &lib_name..bins_summary_&x. SET del_flg = 1 WHERE idx = &j.;
+							UPDATE &lib_name..bins_summary_&x. 
+								SET 
+									nsamples = &group_samples.,
+									means = &group_means.,
+									std_dev = &group_std.
+							WHERE idx = &i.;
+							UPDATE &lib_name..bins_summary_&x. SET del_flg = 1 WHERE idx = &j.;
 						QUIT;
 						%let j = %eval(&j.+1);
 						
 						%if &j. >= &record_size. %then %goto finished_bin_j_check;
 						
 						PROC SQL NOPRINT;
-						SELECT means into :tmpmean_i
-						  FROM &lib_name..bins_summary_&x. 
-			             WHERE idx = &i.;
-						SELECT means into :tmpmean_j 
-						  FROM &lib_name..bins_summary_&x. 
-			             WHERE idx = &j.;
+							SELECT means into :tmpmean_i
+						  	FROM &lib_name..bins_summary_&x. 
+			             	WHERE idx = &i.;
+							SELECT means into :tmpmean_j 
+						  	FROM &lib_name..bins_summary_&x. 
+			             	WHERE idx = &j.;
 						QUIT;
 
-						%if &tmpmean_j. < &tmpmean_i. %then 
+						%if &tmpmean_i. &sign. &tmpmean_j. %then 
 							%group_sample_overflow:
 							%do;
 								%let i = &j.;
@@ -341,10 +335,10 @@
 		%finished_bin_i_check:
 
 		PROC SQL NOPRINT;
-		SELECT SUM(del_flg) into :dels 
-		  FROM &lib_name..bins_summary_&x.;
+			SELECT SUM(del_flg) into :dels 
+		  	FROM &lib_name..bins_summary_&x.;
 		QUIT;
-		%put dels = &dels.;
+/* 		%put dels = &dels.; */
 
 		%if &dels. = 0 %then %goto finished_bin;
 	%end;
