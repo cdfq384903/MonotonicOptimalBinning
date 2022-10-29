@@ -64,16 +64,16 @@
 	%do %while(1);
 		%let i = 0;
 		DATA &lib_name..bins_summary_&x.;
-		SET &lib_name..bins_summary_&x.;
-		tmpidx = _n_ - 1;
-		drop idx ;
-		rename tmpidx = idx ;
-		WHERE del_flg = 0;
+			SET &lib_name..bins_summary_&x.;
+			tmpidx = _n_ - 1;
+			drop idx ;
+			rename tmpidx = idx ;
+			WHERE del_flg = 0;
 		RUN;
 		
 		PROC SQL NOPRINT;
-	 	SELECT COUNT(*) INTO :record_size 
-	      FROM &lib_name..bins_summary_&x.;
+			SELECT COUNT(*) INTO :record_size 
+			FROM &lib_name..bins_summary_&x.;
 		QUIT;
 
 		%do %while(1);
@@ -82,12 +82,12 @@
 			%if &j. >= &record_size. %then %goto finished_bin_i_check;
 			
 			PROC SQL NOPRINT;
-			SELECT means into :mean_i
-			  FROM &lib_name..bins_summary_&x. 
-             WHERE idx = &i.;
-			SELECT means into :mean_j 
-			  FROM &lib_name..bins_summary_&x. 
-             WHERE idx = &j.;
+				SELECT means into :mean_i
+				FROM &lib_name..bins_summary_&x. 
+				WHERE idx = &i.;
+				SELECT means into :mean_j 
+				FROM &lib_name..bins_summary_&x. 
+				WHERE idx = &j.;
 			QUIT;
 			
 			%if &mean_i. &sign. &mean_j. %then 
@@ -107,14 +107,14 @@
 						%if &bins_size_est. < &min_bins. %then %goto finished_bin_i_check;
 
 						PROC SQL NOPRINT;
-						SELECT nsamples,means, std_dev INTO :nsamples_i, :nmeans_i, :nstd_i
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &i.;
-						SELECT nsamples,means, std_dev INTO :nsamples_j, :nmeans_j, :nstd_j
-						  FROM &lib_name..bins_summary_&x.
-			             WHERE idx = &j.;
-					
+							SELECT nsamples,means, std_dev INTO :nsamples_i, :nmeans_i, :nstd_i
+							FROM &lib_name..bins_summary_&x.
+							WHERE idx = &i.;
+							SELECT nsamples,means, std_dev INTO :nsamples_j, :nmeans_j, :nstd_j
+							FROM &lib_name..bins_summary_&x.
+							WHERE idx = &j.;
 						QUIT;  
+
 						%let group_samples = %sysevalf(&nsamples_j. + &nsamples_i);
 						%let group_means = %sysevalf((%sysevalf(&nsamples_j. * &nmeans_j.) + %sysevalf(&nsamples_i. * &nmeans_i.)) / &group_samples.);
 
@@ -142,12 +142,12 @@
 						%if &j. >= &record_size. %then %goto finished_bin_j_check;
 						
 						PROC SQL NOPRINT;
-						SELECT means into :tmpmean_i
-						  FROM &lib_name..bins_summary_&x. 
-			             WHERE idx = &i.;
-						SELECT means into :tmpmean_j 
-						  FROM &lib_name..bins_summary_&x. 
-			             WHERE idx = &j.;
+							SELECT means into :tmpmean_i
+							FROM &lib_name..bins_summary_&x. 
+							WHERE idx = &i.;
+							SELECT means into :tmpmean_j 
+							FROM &lib_name..bins_summary_&x. 
+							WHERE idx = &j.;
 						QUIT;
 
 						%if &tmpmean_i. &sign. &tmpmean_j. %then 
@@ -164,10 +164,10 @@
 		%finished_bin_i_check:
 
 		PROC SQL NOPRINT;
-		SELECT SUM(del_flg) into :dels 
-		  FROM &lib_name..bins_summary_&x.;
+			SELECT SUM(del_flg) into :dels 
+		  	FROM &lib_name..bins_summary_&x.;
 		QUIT;
-/* 		%put dels = &dels.; */
+		/* %put dels = &dels.; */
 
 		%if &dels. = 0 %then %goto finished_bin;
 	%end;
@@ -175,7 +175,7 @@
 	
 	/*combine exclude result*/
 	DATA &lib_name..bins_summary_&x.;
-	SET &lib_name..bins_summary_&x. work.init_summary_exclude;
+		SET &lib_name..bins_summary_&x. work.init_summary_exclude;
 	RUN;
 %MEND;
 
@@ -234,25 +234,25 @@
 	QUIT;
 
 	DATA &lib_name..bins_summary_&x.;
-	SET work.init_summary;
-	std_dev = COALESCE(std_dev, 0);
-	idx = _n_ - 1;
+		SET work.init_summary;
+		std_dev = COALESCE(std_dev, 0);
+		idx = _n_ - 1;
 	RUN;
 	
 	%let del_count = 0;
 	%do %while(1);
 		%let i = 0;
 		DATA &lib_name..bins_summary_&x.;
-		SET &lib_name..bins_summary_&x.;
-		tmpidx = _n_ - 1;
-		drop idx ;
-		rename tmpidx = idx ;
-		WHERE del_flg = 0;
+			SET &lib_name..bins_summary_&x.;
+			tmpidx = _n_ - 1;
+			drop idx ;
+			rename tmpidx = idx ;
+			WHERE del_flg = 0;
 		RUN;
 		
 		PROC SQL NOPRINT;
-	 	SELECT COUNT(*) INTO :record_size 
-	      FROM &lib_name..bins_summary_&x.;
+			SELECT COUNT(*) INTO :record_size 
+			FROM &lib_name..bins_summary_&x.;
 		QUIT;
 
 		%do %while(1);
@@ -261,12 +261,12 @@
 			%if &j. >= &record_size. %then %goto finished_bin_i_check;
 			
 			PROC SQL NOPRINT;
-			SELECT means into :mean_i
-			  FROM &lib_name..bins_summary_&x. 
-             WHERE idx = &i.;
-			SELECT means into :mean_j 
-			  FROM &lib_name..bins_summary_&x. 
-             WHERE idx = &j.;
+				SELECT means into :mean_i
+				FROM &lib_name..bins_summary_&x. 
+				WHERE idx = &i.;
+				SELECT means into :mean_j 
+				FROM &lib_name..bins_summary_&x. 
+				WHERE idx = &j.;
 			QUIT;
 			
 			%if &mean_i. &sign. &mean_j. %then 
@@ -283,6 +283,7 @@
 							SELECT nsamples, means, std_dev INTO :nsamples_i, :nmeans_i, :nstd_i
 						  	FROM &lib_name..bins_summary_&x.
 			             	WHERE idx = &i.;
+							
 							SELECT nsamples, means, std_dev INTO :nsamples_j, :nmeans_j, :nstd_j
 						  	FROM &lib_name..bins_summary_&x.
 			             	WHERE idx = &j.;
@@ -316,6 +317,7 @@
 							SELECT means into :tmpmean_i
 						  	FROM &lib_name..bins_summary_&x. 
 			             	WHERE idx = &i.;
+							
 							SELECT means into :tmpmean_j 
 						  	FROM &lib_name..bins_summary_&x. 
 			             	WHERE idx = &j.;
@@ -336,9 +338,9 @@
 
 		PROC SQL NOPRINT;
 			SELECT SUM(del_flg) into :dels 
-		  	FROM &lib_name..bins_summary_&x.;
+			FROM &lib_name..bins_summary_&x.;
 		QUIT;
-/* 		%put dels = &dels.; */
+		/* %put dels = &dels.; */
 
 		%if &dels. = 0 %then %goto finished_bin;
 	%end;
@@ -346,6 +348,6 @@
 	
 	/*combine exclude result*/
 	DATA &lib_name..bins_summary_&x.;
-	SET &lib_name..bins_summary_&x. work.init_summary_exclude;
+		SET &lib_name..bins_summary_&x. work.init_summary_exclude;
 	RUN;
 %MEND;
