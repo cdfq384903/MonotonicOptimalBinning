@@ -19,10 +19,11 @@ RUN ;
 PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
 
 /*for init parameter*/
+%let data_table_lib = WORK ;
 %let data_table = german_credit_card;
 %let y = default;
 /*  Age Creditamount durationinmonth existingcredits Installmentrate presentresidence numberofpeople */
-%let x =Age Creditamount durationinmonth existingcredits Installmentrate presentresidence numberofpeople;
+%let x = Creditamount;
 %let exclude_condi = <= -99999999;
 %let init_sign = auto ;
 %let min_samples = %sysevalf(1000 * 0.05); /* <<<<<  1000 means the rows of the dataset */
@@ -36,7 +37,7 @@ PROC DATASETS lib = TMPWOE kill ; QUIT ;RUN ;
 %let min_bins = 3;
 %let max_samples = %sysevalf(1000 * 0.4); /* <<<<<  1000 means the rows of the dataset */
 
-%init(data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., init_sign = &init_sign., 
+%init(data_table_lib = &data_table_lib., data_table = &data_table., y = &y., x = &x., exclude_condi = &exclude_condi., init_sign = &init_sign., 
       min_samples = &min_samples., min_bads = &min_bads., min_pvalue = &min_pvalue., 
       show_woe_plot = &show_woe_plot.,
       is_using_encoding_var = &is_using_encoding_var., lib_name = &lib_name.);

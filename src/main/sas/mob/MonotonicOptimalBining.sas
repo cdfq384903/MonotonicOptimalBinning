@@ -1,6 +1,6 @@
 /*load libs*/
 %INCLUDE "/home/u60021700/mob/src/main/mob/num/BinsMerge.sas" ;
-%INCLUDE "/home/u60021700/mob/src/main/sas/mob/cat/ChiMerge.sas" ;
+%INCLUDE "/home/u60021700/mob/src/main/sas/mob/cat/ChiMerge.sas" ; 
 %INCLUDE "/home/u60021700/mob/src/main/mob/num/BinsSummary.sas" ;
 %INCLUDE "/home/u60021700/mob/src/main/mob/tool/WoeSummary.sas" ;
 %INCLUDE "/home/u60021700/mob/src/main/mob/tool/WoeHandler.sas" ;
@@ -13,7 +13,15 @@
         g_current_bin_size g_max_bins g_init_sign g_sign g_invalid_var;
 
 /*define constructor*/
-%MACRO init(data_table, y, x, exclude_condi, init_sign, min_samples, min_bads, min_pvalue, show_woe_plot, is_using_encoding_var, lib_name);
+%MACRO init(data_table_lib, data_table, y, x, exclude_condi, init_sign, min_samples, min_bads, min_pvalue, show_woe_plot, is_using_encoding_var, lib_name);
+	/* make sure the data is stored in work to create encoding table */
+	%if %sysfunc(upcase("&data_table_lib.")) NE "WORK" %then
+		%do ;
+			DATA WORK.&data_table. ;
+				set &data_table_lib..&data_table. ;
+			RUN ;
+		%end ;
+	
 	/*define data members*/
 	%let g_data_table = &data_table.;
 	%let g_y = &y.;
@@ -106,8 +114,7 @@
 														min_pvalue = &g_min_pvalue., 
 														min_bins = &g_min_bins., 
 														lib_name = &g_lib_name.);
-									%set_g_current_bin_size(x = &var., 
-															lib_name = &lib_name.);
+									%set_g_current_bin_size(x = &var., lib_name = &lib_name.);
 								%end;
 								%break_optimal_pvalue_SFB:
 							%end;
@@ -173,6 +180,7 @@
 					%end;
 			%end;
 		%end;
+		
 	%if &g_is_using_encoding_var. = 1 %then 
 		%do ;
 			%reverseEncodingVar(var_encoding_table = &g_lib_name..var_encoding_table, 
@@ -184,11 +192,11 @@
 %MACRO set_g_invalid_var(data_table, x);
 	PROC SQL NOPRINT;
 		SELECT COUNT(*) AS total_record INTO : total_record
-        FROM &data_table.;
+           FROM &data_table.;
 
 		SELECT COUNT(*) AS missing_count INTO : missing_count
-        FROM &data_table.
-		WHERE missing(&x.);
+           FROM &data_table.
+		 WHERE missing(&x.);
 	QUIT;
 
 	%let diff = %sysevalf(&missing_count. - &total_record.);
@@ -216,7 +224,7 @@
 %MACRO set_g_current_bin_size(x, lib_name);
 	PROC SQL NOPRINT;
 		SELECT COUNT(*) AS bins INTO : current_bins
-        FROM &lib_name..bins_summary_pvalue_&x.;
+          FROM &lib_name..bins_summary_pvalue_&x.;
 	QUIT;
 	%let g_current_bin_size = &current_bins.;
 /* 	%put g_current_bin_size = &g_current_bin_size.; */
