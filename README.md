@@ -129,7 +129,7 @@ Initialize  parameters: <br>
 
 ##### Chi Merge Binning (CMB)
 
-Chi Merge Binning (CMB) is an auto binning algorithm applying chi-squared test for the merging criterion. It is also limited by the same restrictions as the SFB and MFB on bins amount, bins size, sample size, etc. Currently, the CMB cannot deal with the catergorical varibales with order.
+Chi Merge Binning (CMB) is an auto binning algorithm applying chi-squared test for the merging criterion. It is also limited by the same restrictions as the SFB and MFB on bins amount, bins size, sample size, etc. Currently, the CMB cannot deal with the categorical varibales with order.
 
 Run `MainChiMerge.sas` script <br>
 
