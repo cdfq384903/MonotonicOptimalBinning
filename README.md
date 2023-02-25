@@ -5,7 +5,7 @@
 
 <div align = "justify">
  
-This project mainly implements the Monotonic Optimal Binning(MOB) algorithm in SAS 9.4. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of creating too many bins, we optimize the p-value iteratively and provide `bins size first binning`, `monotonicity first binning`, and `chi merge binning` methods for users to discretize data more conveniently.
+This project mainly implements the Monotone Optimal Binning(MOB) algorithm in SAS 9.4. We extend the application of this algorithm which can be applied to numerical and categorical data. In order to avoid the problem of creating too many bins, we optimize the p-value iteratively and provide `bins size first binning`, `monotonicity first binning`, and `chi merge binning` methods for users to discretize data more conveniently.
 
  
  ## How to use 
