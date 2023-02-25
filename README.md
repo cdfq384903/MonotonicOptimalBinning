@@ -1,6 +1,6 @@
 
 <h1><p align = "center"; font-family: "Calibri">
- Monotonic Optimal Binning in Credit Risk
+ Monotone Optimal Binning in Credit Risk
 </p></h1>
 
 <div align = "justify">
