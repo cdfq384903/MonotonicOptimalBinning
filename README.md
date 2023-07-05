@@ -499,6 +499,7 @@ SAS Studio 3.8 with SAS 9.4
 1. German Credit Risk Analysis : Beginner's Guide . (2022). Retrieved 9 June 2022, from [Kaggle](https://www.kaggle.com/code/pahulpreet/german-credit-risk-analysis-beginner-s-guide/notebook) <br>
 2. Pavel Mironchyk and Viktor Tchistiakov. "Monotone optimal binning algorithm for credit risk modeling.". (2017): 1-15. [citation](https://www.researchgate.net/publication/322520135) <br>
 3. [SAS OnDemand for Academics](https://www.sas.com/zh_tw/software/on-demand-for-academics.html). (2022). Retrieved 9 June 2022 <br>
+4. [MOBPY : Monotonic-Optimal-Binning](https://github.com/ChenTaHung/Monotonic-Optimal-Binning)<br>
 
 # Authors
 1. Darren Tsai(https://www.linkedin.com/in/darren-yucheng-tsai/) <br>
